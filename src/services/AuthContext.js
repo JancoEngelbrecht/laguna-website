@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     // Logic for user logout
     setIsAuthenticated(false);
-    navigate('/login');
+    navigate('/');
   };
 
   return (
