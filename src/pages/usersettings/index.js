@@ -1,6 +1,6 @@
 import React from 'react';
-import { useAuth } from '../../services/AuthContext';
 import LogoutButton from '../../components/common/LogoutButton'
+
 
 const UserSettings = () => {
 

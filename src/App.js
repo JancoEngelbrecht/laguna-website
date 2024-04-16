@@ -10,18 +10,17 @@ import UserSettings from './pages/usersettings';
 
 function App() {
   return (
-    <Router>
-      <AuthProvider>
         <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route path="/login" element={<Login />} />
-            <Route index element={<Home />} />
-            <Route path="usersettings" element={<PrivateRoute>{<UserSettings />}</PrivateRoute>} />
-            <Route path="about" element={<About />} />
+          <Route element={<Layout />}>
+            <Route path ="/" element={<Home />} />
+            <Route path="login" element={<Login />} />
+
+            <Route path="user" element={<PrivateRoute />} >
+              <Route index element={<UserSettings />} />
+              <Route path="about" element={<About />} />
+            </Route>
           </Route>
         </Routes>
-      </AuthProvider>
-    </Router>
   )
 }
 

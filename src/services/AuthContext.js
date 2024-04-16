@@ -1,22 +1,32 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false); //Change to null worked
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    const storedAuthState = localStorage.getItem('isAuthenticated');
+    if (storedAuthState === 'true') {
+      setIsAuthenticated(true);
+    }
+  }, []);
+  
 
   const login = () => {
-    // Logic for user authentication (e.g., fetching user data from server)
     setIsAuthenticated(true);
-    navigate('/usersettings');
+    localStorage.setItem('isAuthenticated', 'true');
+    console.log(isAuthenticated, "AuthContext Login");
+    navigate('/user');
   };
 
   const logout = () => {
-    // Logic for user logout
     setIsAuthenticated(false);
-    navigate('/');
+    localStorage.removeItem('isAuthenticated');
+    console.log(isAuthenticated, "AuthContext Logout");
+    navigate('/login')
   };
 
   return (
