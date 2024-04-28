@@ -4,10 +4,14 @@ import { Link } from "react-router-dom"
 
 const Footer = () => {
     return (
-      <div className="flex justify-end items-center py-4 px-6 bg-gray-800 text-white pr-96">
-      <div>
-        <Link to="/" className="text-lg font-bold mr-4">Home</Link>
-        <Link to="/login" className="text-lg font-bold"> Login</Link>
+      <div className="bg-gray-800 text-white py-4 relative w-full inset-x-0 bottom-0 z-50">
+      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4">
+        <div className="mb-4 md:mb-0">
+          <p className="text-xl font-bold">Your Company Name</p>
+          <p className="text-sm">123 Street Name, City, Country</p>
+          <p className="text-sm">info@company.com</p>
+          <p className="text-sm">123-456-7890</p>
+        </div>
       </div>
     </div>
   );

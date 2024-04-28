@@ -7,7 +7,6 @@ const UserSettings = () => {
   return (
     <div>
       <h1>Welcome to the User Settings Page!</h1>
-      <LogoutButton />
     </div>
   );
 };

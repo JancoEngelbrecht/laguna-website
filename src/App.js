@@ -6,6 +6,7 @@ import Login from './pages/login';
 import About from './pages/about'
 import PrivateRoute from './routes/PrivateRoutes';
 import UserSettings from './pages/usersettings';
+import Contact from './pages/contact';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path ="/" element={<Home />} />
             <Route path="login" element={<Login />} />
+            <Route path="contact" element={<Contact />} />
 
             <Route path="user" element={<PrivateRoute />} >
               <Route index element={<UserSettings />} />

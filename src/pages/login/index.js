@@ -5,8 +5,7 @@ import UserNav from '../../components/user/usernav';
 const Login = () => {
 
   return (
-    <div>
-      <h1>Welcome to the Login Page!</h1>
+    <div className='h-screen w-screen flex items-center justify-center'>
       <LoginButton />
     </div>
   );
