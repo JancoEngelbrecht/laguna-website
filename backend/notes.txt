@@ -1,0 +1,9 @@
+How to set up the Node server side: 
+
+- Create Backend folder and navigate to it
+- run "npm init -y" in terminal
+- create index.js file in Backend folder
+- in package.json, change the test to "node index.js", this way you can just use "npm start" in terminal. 
+- Terminal "npm i express cors body-parser"
+- Set up the index.js
+- create a routes folder and a routes.js file

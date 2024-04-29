@@ -1,0 +1,39 @@
+1. Simple Login of Website (DONE)
+    - Private Routes 
+    - AuthContext (State Management)
+
+2. Finalize the Website Routings and Pages (DONE)
+
+3. Style the Website:
+    - Get Tailwind to work (DONE) - Could be the tailwind config file...
+    - Header (DONE)
+    - Footer (DONE)
+    - Pages 
+        - Home (DONE)
+        - Login (DONE)
+        - Contact Us (DONE)
+            - Understand the contact form and how the code works
+
+4. Simple Form for customer details (NEXT)
+    - Input Validations (DONE)
+    - Set up backend Server
+    - Data Storage with MongoDB (Next) ..add the Post Function to the Contact Form
+
+5. Update Login to a secure google based login
+    - Scope the steps for this...
+
+6. Create a Showroom Page that can be updated by loggin in with a user profile. 
+    - Figure out how this should work.. 
+    - Start with the Showroom page. 
+    - Link the showroom data to a database
+    - Make updates to the showroom data on a settings page. 
+
+7. Create a Dropdown
+
+    Tailwind Installation: 
+    1. Check that the path is correct in config file
+    2. Check that the config file is in the root
+    3. Check that the styles.css is imported into the index.js
+    4. Check that the styles.css is in the src folder. 
+    5. Confirm that the postcss config file is created
+    6. Run the following in the terminal: npm install tailwindcss postcss postcss-loader css-loader style-loader --save-dev
