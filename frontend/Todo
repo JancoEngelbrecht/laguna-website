@@ -14,10 +14,14 @@
         - Contact Us (DONE)
             - Understand the contact form and how the code works
 
-4. Simple Form for customer details (NEXT)
+4. Simple Form for customer details (IN PROGRESS)
     - Input Validations (DONE)
-    - Set up backend Server
-    - Data Storage with MongoDB (Next) ..add the Post Function to the Contact Form
+    - Set up backend Server (DONE)
+    - Understand how the Backend Server Works (DONE)
+        - Index.js (DONE)
+        - Router (DONE)
+        
+    - Data Storage with MongoDB (NEXT)
 
 5. Update Login to a secure google based login
     - Scope the steps for this...

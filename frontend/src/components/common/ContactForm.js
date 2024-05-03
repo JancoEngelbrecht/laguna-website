@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -30,22 +31,18 @@ const ContactForm = () => {
       setErrors(newErrors);
     } else {
       try {
-        const response = await fetch('/api/submit-form', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });
-        if (response.ok) {
+        const response = await axios.post('http://localhost:4000/contact', formData);
+        if (response.status === 200) {
           console.log('Form submitted successfully');
           setFormData({ name: '', email: '', message: '' });
           setIsSubmitted(true);
         } else {
           console.error('Form submission failed');
+          setErrors({ ...errors, submission: 'Form submission failed. Please try again later.' });
         }
       } catch (error) {
         console.error('Error submitting form:', error);
+        setErrors({ ...errors, submission: 'An unexpected error occurred. Please try again later.' });
       }
     }
   };
@@ -96,7 +93,8 @@ const ContactForm = () => {
               value={formData.message}
               onChange={handleInputChange}
               required
-              className={"mt-1 p-2 block w-full border rounded-md focus:outline-none border-gray-300 rows=4"}
+              className="mt-1 p-2 block w-full border rounded-md focus:outline-none border-gray-300"
+              rows={4}
             />
           </div>
           <button
@@ -107,14 +105,15 @@ const ContactForm = () => {
           </button>
         </form>
         <div className="flex items-center justify-center">
-          {!isSubmitted ? '' : 'Your Form has been submitted'}
+          {isSubmitted && <p>Your form has been submitted.</p>}
+          {errors.submission && <p className="text-red-500">{errors.submission}</p>}
         </div>
       </div>
     </>
   );
 };
 
-export default ContactForm;
+export default ContactForm; // JavaScript's Export Module
 
 // REACT CONCEPTS:
   // Reconciliation -> shallow comparison between pre and new state to determine if it needs to re-render\

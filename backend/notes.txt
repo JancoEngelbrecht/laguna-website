@@ -7,3 +7,22 @@ How to set up the Node server side:
 - Terminal "npm i express cors body-parser"
 - Set up the index.js
 - create a routes folder and a routes.js file
+
+
+
+Setting up the Server - Index.js: 
+
+Express -> Node.js Framework for webservers
+Cors -> Middleware to enable Cross-Origin Resource Sharing (CORS)
+    - Origin = URL
+    - Without CORS i would not be able to access (.com) if i am working with (.co.za)
+Body-parser -> Middleware to parse incoming request bodies into formats
+    - Parse = Convert
+Router - module containing routes for application (Paths inside of the Server)
+
+REMEMBER: 
+- npm install mongoose
+- npm install dotenv
+- npm install express
+- npm nodemon (auto server restart when you make changes when running)
+
