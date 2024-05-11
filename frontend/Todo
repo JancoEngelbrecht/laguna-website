@@ -14,26 +14,31 @@
         - Contact Us (DONE)
             - Understand the contact form and how the code works
 
-4. Simple Form for customer details (IN PROGRESS)
+4. Simple Form for customer details (DONE)
     - Input Validations (DONE)
     - Set up backend Server (DONE)
     - Understand how the Backend Server Works (DONE)
         - Index.js (DONE)
         - Router (DONE)
-        
-    - Data Storage with MongoDB (NEXT)
+    - Data Storage with MongoDB (DONE)
 
-5. Update Login to a secure google based login
-    - Scope the steps for this...
+5. Update Login to a secure google based login (IN-PROGRESS)
+    - Understand your options: 
+        - Firebase (Expensive) 
+        - google-login (@react-oauth/google) - Just provides token, you need to set up user access in backend
+        - Auth0 - Most popular option
+    - Look into Auth0 integration (DONE)
+        - how to add Auth0 to authcontext (DONE)
+        - Look into Callbacks (DONE)
+        - Set up the .env file (DONE)
+        - Make sure the user stays logged in eventhough the Browser Refreshes.(In-Progress)
 
-6. Create a Showroom Page that can be updated by loggin in with a user profile. 
-    - Figure out how this should work.. 
-    - Start with the Showroom page. 
+6. Create a Product Page that can be updated by loggin in with a user profile.  
+    - Start with the Product page. 
     - Link the showroom data to a database
     - Make updates to the showroom data on a settings page. 
 
 7. Create a Dropdown
-
     Tailwind Installation: 
     1. Check that the path is correct in config file
     2. Check that the config file is in the root
@@ -41,3 +46,11 @@
     4. Check that the styles.css is in the src folder. 
     5. Confirm that the postcss config file is created
     6. Run the following in the terminal: npm install tailwindcss postcss postcss-loader css-loader style-loader --save-dev
+
+8. Create a PayGate
+
+9. Animations
+
+10. Auth0 user Permissions and Access
+
+11. Production the Application 

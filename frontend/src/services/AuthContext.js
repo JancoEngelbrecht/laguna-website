@@ -1,40 +1,31 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+//AUTHCONTEXT --> Not using Auth0
+// import React, { createContext, useState, useContext, useEffect } from 'react';
+// import { useNavigate } from 'react-router-dom';
 
-const AuthContext = createContext();
+// const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false); //Change to null worked
-  const navigate = useNavigate();
+// export const AuthProvider = ({ children }) => {
+//   const [isAuthenticated, setIsAuthenticated] = useState(() => {
+//     return localStorage.getItem('isAuthenticated') === 'true';
+//   });
+//   const navigate = useNavigate();
   
-  useEffect(() => {
-    const storedAuthState = localStorage.getItem('isAuthenticated');
-    if (storedAuthState === 'true') {
-      setIsAuthenticated(true);
-    }
-  }, []);
-  
+  // const login = () => {
+  //   setIsAuthenticated(true);
+  //   localStorage.setItem('isAuthenticated', 'true');
+  //   navigate('/user');
+  // };
 
-  const login = () => {
-    setIsAuthenticated(true);
-    localStorage.setItem('isAuthenticated', 'true');
-    console.log(isAuthenticated, "AuthContext Login");
-    navigate('/user');
-  };
+  // const logout = () => {
+  //   setIsAuthenticated(false);
+  //   localStorage.removeItem('isAuthenticated');
+  //   navigate('/login');
+  // };
 
-  const logout = () => {
-    setIsAuthenticated(false);
-    localStorage.removeItem('isAuthenticated');
-    console.log(isAuthenticated, "AuthContext Logout");
-    navigate('/login')
-  };
-
-  return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}> 
-      {children}
-    </AuthContext.Provider>
-  );
-};
-
-
-export const useAuth = () => useContext(AuthContext); 
+//   return (
+//     <AuthContext.Provider value={{ isAuthenticated, login, logout }}> 
+//       {children}
+//     </AuthContext.Provider>
+//   );
+// };
+// export const useAuth = () => useContext(AuthContext); 

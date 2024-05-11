@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom"
+import LoginButton from "../../common/LoginButton";
 
 
 const Navbar = () => {
@@ -10,7 +11,7 @@ const Navbar = () => {
         <div className="flex space-x-4">
           <NavLink to="/" className="hover:text-gray-300">Home</NavLink>
           <NavLink to="/contact" className="hover:text-gray-300">Contact Us</NavLink>
-          <NavLink to="/login" className="hover:text-gray-300">Login</NavLink>
+          <LoginButton />
         </div>
       </div>
     </div>

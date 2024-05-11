@@ -2,12 +2,11 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Navbar from './navbar'
 import Footer from './footer'
-import { useAuth } from '../../services/AuthContext'
 import UserNav from '../user/usernav'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Layout = () => {
-  
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth0();
 
   if (isAuthenticated) {
     return (
