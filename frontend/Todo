@@ -22,7 +22,7 @@
         - Router (DONE)
     - Data Storage with MongoDB (DONE)
 
-5. Update Login to a secure google based login (IN-PROGRESS)
+5. Update Login to a secure google based login (DONE)
     - Understand your options: 
         - Firebase (Expensive) 
         - google-login (@react-oauth/google) - Just provides token, you need to set up user access in backend
@@ -31,9 +31,9 @@
         - how to add Auth0 to authcontext (DONE)
         - Look into Callbacks (DONE)
         - Set up the .env file (DONE)
-        - Make sure the user stays logged in eventhough the Browser Refreshes.(In-Progress)
+        - Make sure the user stays logged in eventhough the Browser Refreshes.(DONE)
 
-6. Create a Product Page that can be updated by loggin in with a user profile.  
+6. Create a Product Page that can be updated by loggin in with a user profile. (NEXT)
     - Start with the Product page. 
     - Link the showroom data to a database
     - Make updates to the showroom data on a settings page. 
