@@ -20,7 +20,24 @@ router.post('/contact', async (req, res) => {
     }
 
     res.end()
-     
+});
+
+router.get('/products', async (req, res) => {
+    try {
+        const products = await schemas.Product.find();
+
+        // Format price to have 2 decimals
+        const productsWithFormattedPrice = products.map(product => ({
+            ...product.toObject(),
+            price: parseFloat(product.price).toFixed(2)
+        }));
+
+        res.status(200).json(productsWithFormattedPrice);
+        
+    } catch (error) {
+        console.error('Error fetching products', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
 });
 
 

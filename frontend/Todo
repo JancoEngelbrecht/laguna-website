@@ -33,9 +33,10 @@
         - Set up the .env file (DONE)
         - Make sure the user stays logged in eventhough the Browser Refreshes.(DONE)
 
-6. Create a Product Page that can be updated by loggin in with a user profile. (NEXT)
-    - Start with the Product page. 
-    - Link the showroom data to a database
+6. Create a Product Page that can be updated by loggin in with a user profile. (IN-PROGRESS)
+    - Start with the Product page.(DONE) 
+    - Link the showroom data to a database (DONE)
+    - Add Images to the Database (NEXT)
     - Make updates to the showroom data on a settings page. 
 
 7. Create a Dropdown

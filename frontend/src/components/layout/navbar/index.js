@@ -11,6 +11,7 @@ const Navbar = () => {
         <div className="flex space-x-4">
           <NavLink to="/" className="hover:text-gray-300">Home</NavLink>
           <NavLink to="/contact" className="hover:text-gray-300">Contact Us</NavLink>
+          <NavLink to="/products" className="hover:text-gray-300">Products</NavLink>
           <LoginButton />
         </div>
       </div>

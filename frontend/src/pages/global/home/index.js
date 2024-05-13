@@ -2,7 +2,7 @@ import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Navigate } from 'react-router-dom'; // Import Redirect from react-router-dom
 
-import mainCow from "../../assets/images/maincow.jpg";
+import mainCow from "../../../assets/images/maincow.jpg";
 
 const Home = () => {
   const { isAuthenticated } = useAuth0(); // Access isAuthenticated from useAuth0 hook

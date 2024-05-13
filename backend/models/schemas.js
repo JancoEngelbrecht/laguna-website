@@ -5,9 +5,18 @@ const contactSchema = new Schema({
     email:{type: String, required:true},
     message:{type: String,required:true},
     entryDate: {type:Date, default:Date.now}
-})
+});
 
-const Contact = mongoose.model('Contact', contactSchema, 'contact_form')
-const mySchemas = {'Contact': Contact}
+const Contact = mongoose.model('Contact', contactSchema, 'contact_form');
+
+const productSchema = new Schema({
+    name: {type: String},
+    price: {type: mongoose.Types.Decimal128}, 
+    image: {type: String},
+});
+
+
+const Product = mongoose.model('Product', productSchema, 'products')
+const mySchemas = {'Contact': Contact, 'Product': Product}
 
 module.exports = mySchemas

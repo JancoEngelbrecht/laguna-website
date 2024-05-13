@@ -1,6 +1,6 @@
 import React from 'react';
-import mainCow from "../../assets/images/maincow.jpg";
-import ContactForm from '../../components/common/ContactForm';
+import mainCow from "../../../assets/images/maincow.jpg";
+import ContactForm from '../../../components/common/ContactForm';
 
 const Contact = () => {
   return (
