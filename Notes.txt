@@ -4,3 +4,7 @@ Auth0 Implementation:
 2. Setup the Callbacks (localhost: 3000)
 3. Use Auth0 like you would use a customer AuthContext. 
 4. .env file for secret info, add to gitignore and use prefix REACT_APP_ to make it work
+
+
+Images in Database: 
+ - Convert to base64 binary. 

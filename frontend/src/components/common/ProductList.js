@@ -5,18 +5,23 @@ import axios from 'axios'
 
 function ProductList() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchProducts() {
       try {
         const response = await axios.get('http://localhost:4000/products');
         setProducts(response.data);
+        setLoading(false)
       } catch (error) {
         console.log(error.response)
+        setLoading(false)
       }
     }
     fetchProducts();
   }, []);
+
+  if (loading) return <div className="text-center py-10">Loading...</div>;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -22,6 +22,21 @@ router.post('/contact', async (req, res) => {
     res.end()
 });
 
+router.post('/products', async (req, res) => {
+  const { name, price, image } = req.body; 
+  
+  const productData = {name: name, price: price, image: image}
+  const newProduct = new schemas.Product(productData)
+  const saveProduct = await newProduct.save()
+  if (saveProduct) {
+  res.status(200).json({ message: 'Form submitted successfully' });
+  } else {
+      res.send('Failed to submit Form')
+  }
+
+  res.end()
+});
+
 router.get('/products', async (req, res) => {
     try {
         const products = await schemas.Product.find();
@@ -38,7 +53,38 @@ router.get('/products', async (req, res) => {
         console.error('Error fetching products', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
+
+    res.end()
 });
+
+router.get('/products/:id', async (req, res) => {
+    try {
+      const productId = req.params.id;
+      const product = await schemas.Product.findById(productId);
+  
+      if (!product) {
+        return res.status(404).json({ error: 'Product not found' });
+      }
+  
+      res.json(product);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Failed to fetch product' });
+    }
+
+    res.end()
+  });
+
+router.put('/products/:id', async (req, res) => {
+    try {
+      const updatedProduct = await schemas.Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      res.json(updatedProduct);
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to update product' });
+    }
+
+    res.end()
+  });
 
 
 //Note 4 

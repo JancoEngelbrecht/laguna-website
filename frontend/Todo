@@ -36,8 +36,13 @@
 6. Create a Product Page that can be updated by loggin in with a user profile. (IN-PROGRESS)
     - Start with the Product page.(DONE) 
     - Link the showroom data to a database (DONE)
-    - Add Images to the Database (NEXT)
-    - Make updates to the showroom data on a settings page. 
+    - Add Images to the Database (DONE)
+    - Make updates to the showroom data on a settings page. (IN-PROGRESS)
+        - Fix the Botton Banner position on the page. (DONE)
+        - List of all the entries and fields and update existing data in DB (DONE)
+        - Add products and delete products (NEXT)
+        - Upload Image
+        - Validations for Fields
 
 7. Create a Dropdown
     Tailwind Installation: 
@@ -48,7 +53,9 @@
     5. Confirm that the postcss config file is created
     6. Run the following in the terminal: npm install tailwindcss postcss postcss-loader css-loader style-loader --save-dev
 
-8. Create a PayGate
+8. Search function for the products
+
+8. Create a Basket and a PayGate
 
 9. Animations
 

@@ -6,8 +6,7 @@ const UserProfile = () => {
 
   return (
     <div>
-      <h2>Welcome, {user.name}</h2>
-      <p>Email: {user.email}</p>
+      <h2>Logged in as {user.name}</h2>
     </div>
   );
 };
