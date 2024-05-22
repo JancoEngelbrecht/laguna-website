@@ -9,8 +9,8 @@ require('dotenv/config') // Loads variables into the Node.js environment through
 const app = express()  
 
 //Note 2.
-app.use(bodyParser.json()) 
-app.use(bodyParser.urlencoded({extended:false})) 
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 //Note 3.
 const corsOptions = {

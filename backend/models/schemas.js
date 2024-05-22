@@ -13,6 +13,7 @@ const productSchema = new Schema({
     name: {type: String},
     price: {type: mongoose.Types.Decimal128}, 
     image: {type: String},
+    descript: {type: String},
 });
 
 

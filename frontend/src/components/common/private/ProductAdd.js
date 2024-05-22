@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import axios from 'axios';
+import { useDropzone } from 'react-dropzone';
 
-const ProductAdd = ({ onAdd }) => {
+const ProductAdd = ({ onAdd, setLoading }) => {
+  // Initialize Form Input State
   const [newProduct, setNewProduct] = useState({
     name: '',
     price: '',
-    image: ''
+    image: '', 
+    descript: '',
   });
   const [error, setError] = useState(null);
 
+  // Manage Change to Form inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewProduct(prevState => ({
@@ -17,13 +21,37 @@ const ProductAdd = ({ onAdd }) => {
     }));
   };
 
+  const handleImageDrop = useCallback(acceptedFiles => {
+    const file = acceptedFiles[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const base64Image = reader.result;
+      setNewProduct(prevState => ({
+        ...prevState,
+        image: base64Image
+      }));
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }, []);
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop: handleImageDrop,
+    accept: 'image/jpeg, image/png, image/gif, image/bmp, image/webp',
+    multiple: false
+  });
+
+  // Add New Data to the DB
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post('http://localhost:4000/products', newProduct)
       .then(response => {
-        alert('Product added successfully!');
         setError(null);
-        onAdd(response.data);
+        onAdd(response.data); // Pass in the Database Objects to HandleAddProduct in Usersettings Index.js
+        setLoading(false)
       })
       .catch(error => {
         console.error(error);
@@ -32,7 +60,7 @@ const ProductAdd = ({ onAdd }) => {
   };
 
   return (
-    <div className=" w-full mb-10 p-6 bg-white shadow-lg rounded-lg">
+    <div className="w-full mb-10 p-6 bg-white shadow-lg rounded-lg">
       <h1 className="text-2xl font-bold mb-4">Add Product</h1>
       <form onSubmit={handleSubmit}>
         {error && <div className="text-red-500 mb-4">{error}</div>}
@@ -57,14 +85,21 @@ const ProductAdd = ({ onAdd }) => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Image URL</label>
+          <label className="block text-gray-700 text-sm font-bold mb-2">Description</label>
           <input
             type="text"
-            name="image"
-            value={newProduct.image}
+            name="descript"
+            value={newProduct.descript}
             onChange={handleChange}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">Image</label>
+          <div {...getRootProps()} className="dropzone shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline cursor-pointer">
+            <input {...getInputProps()} />
+            <p className="text-center">Add Image</p>
+          </div>
         </div>
         {newProduct.image && (
           <div className="mb-4">

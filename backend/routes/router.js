@@ -23,18 +23,22 @@ router.post('/contact', async (req, res) => {
 });
 
 router.post('/products', async (req, res) => {
-  const { name, price, image } = req.body; 
+  try {
+    const { name, price, image, descript } = req.body;
   
-  const productData = {name: name, price: price, image: image}
-  const newProduct = new schemas.Product(productData)
-  const saveProduct = await newProduct.save()
-  if (saveProduct) {
-  res.status(200).json({ message: 'Form submitted successfully' });
-  } else {
-      res.send('Failed to submit Form')
+    const productData = { name, price, image, descript }; 
+    const newProduct = new schemas.Product(productData);
+    const saveProduct = await newProduct.save();
+  
+    if (saveProduct) {
+      res.status(200).json({ message: 'Product submitted successfully' });
+    } else {
+      res.send('Failed to submit Product');
+    }
+  } catch (error) {
+    console.error('Error submitting Product', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
-
-  res.end()
 });
 
 router.get('/products', async (req, res) => {
@@ -84,6 +88,18 @@ router.put('/products/:id', async (req, res) => {
     }
 
     res.end()
+  });
+
+  router.delete('/products/:id', async (req, res) => {
+    try {
+      const deletedProduct = await schemas.Product.findByIdAndDelete(req.params.id);
+      if (!deletedProduct) {
+        return res.status(404).json({ error: 'Product not found' });
+      }
+      res.json(deletedProduct);
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to delete product' });
+    }
   });
 
 
