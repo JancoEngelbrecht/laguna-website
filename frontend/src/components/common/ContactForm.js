@@ -50,7 +50,7 @@ const ContactForm = () => {
   return (
     <>
       <h1 className="text-4xl text-center text-gray-800 font-bold mb-8">Contact Us</h1>
-      <div className="max-w-md mx-auto">
+      <div className="w-full">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700">
@@ -63,7 +63,7 @@ const ContactForm = () => {
               value={formData.name}
               onChange={handleInputChange}
               required
-              className={'mt-1 p-2 block w-96 border rounded-md focus:outline-none border-gray-300'}
+              className="mt-1 p-2 block w-full border rounded-md focus:outline-none border-gray-300"
             />
           </div>
           <div>
@@ -104,8 +104,8 @@ const ContactForm = () => {
             Submit
           </button>
         </form>
-        <div className="flex items-center justify-center">
-          {isSubmitted && <p>Your form has been submitted.</p>}
+        <div className="flex items-center justify-center mt-4">
+          {isSubmitted && <p className="text-green-500">Your form has been submitted.</p>}
           {errors.submission && <p className="text-red-500">{errors.submission}</p>}
         </div>
       </div>
