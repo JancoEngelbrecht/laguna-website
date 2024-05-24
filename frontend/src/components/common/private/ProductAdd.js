@@ -21,6 +21,7 @@ const ProductAdd = ({ onAdd, setLoading }) => {
     }));
   };
 
+  // Adding of Images
   const handleImageDrop = useCallback(acceptedFiles => {
     const file = acceptedFiles[0];
     const reader = new FileReader();
@@ -44,19 +45,22 @@ const ProductAdd = ({ onAdd, setLoading }) => {
     multiple: false
   });
 
-  // Add New Data to the DB
-  const handleSubmit = (e) => {
+  // Submit the new product to the DB and to the Main Component
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.post('http://localhost:4000/products', newProduct)
-      .then(response => {
-        setError(null);
-        onAdd(response.data); // Pass in the Database Objects to HandleAddProduct in Usersettings Index.js
-        setLoading(false)
-      })
-      .catch(error => {
-        console.error(error);
-        setError('Failed to add product data');
-      });
+    setLoading(true);
+    try {
+      const response = await axios.post('http://localhost:4000/products', newProduct);
+      const addedProduct = response.data; // Get the newly created product from the response
+      setError(null);
+      onAdd(addedProduct); 
+      setLoading(false);
+      console.log(addedProduct)
+    } catch (error) {
+      console.error(error);
+      setError('Failed to add product data');
+      setLoading(false);
+    }
   };
 
   return (

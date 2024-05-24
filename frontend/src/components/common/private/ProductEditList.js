@@ -1,37 +1,17 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
+import React, { useCallback } from 'react';
 import ProductEdit from './ProductEdit';
 
-const ProductEditList = ({onAdd}) => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-
-  // useCallback to manage their execution. It will not be executed on page render or re-render, only when called. 
+const ProductEditList = ({ products, loading, error, onDelete }) => {
+  // useCallback to manage their execution. It will not be executed on page render or re-render, only when called.
   const handleUpdate = useCallback(() => {
     console.log("Product Updated");
   }, []); 
 
-  const handleDelete = () => {
+  const handleDelete = useCallback((productId) => {
+    onDelete(productId);
     console.log("Product Deleted");
-  }
+  }, [onDelete]);
 
-  // Fetch Data for the Product List with every render/re-render
-  useEffect(() => {
-    axios.get('http://localhost:4000/products')
-      .then(response => {
-        setProducts(response.data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error(error);
-        setError('Failed to fetch products data');
-        setLoading(false);
-      });
-  }, [onAdd, handleDelete]); // 1.
-
- 
   if (loading) return <div className="text-center py-10">Loading...</div>;
   if (error) return <div className="text-center text-red-500 py-10">{error}</div>;
 
@@ -39,7 +19,12 @@ const ProductEditList = ({onAdd}) => {
     <div className="">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map(product => (
-          <ProductEdit key={product._id} product={product} onUpdate={handleUpdate} onDelete={handleDelete}/>
+          <ProductEdit 
+            key={product._id} 
+            product={product} 
+            onUpdate={handleUpdate} 
+            onDelete={() => handleDelete(product._id)}
+          />
         ))}
       </div>
     </div>

@@ -1,5 +1,4 @@
 Auth0 Implementation:
-
 1. Navigate to Auth0.com
 2. Setup the Callbacks (localhost: 3000)
 3. Use Auth0 like you would use a customer AuthContext. 
@@ -8,3 +7,18 @@ Auth0 Implementation:
 
 Images in Database: 
  - Convert to base64 binary. 
+
+
+Add and Delete of Products: 
+- Adding and deleting the added product after each other does not work. The Added Product only gets a DB_ID when it is submitted/browser refresh. 
+- When we add a product, it is added to the DB right away, but the browser does not refresh with each add. 
+- Doing it this way helps the webpage to be more efficient. 
+
+
+Tailwind Installation: 
+    1. Check that the path is correct in config file
+    2. Check that the config file is in the root
+    3. Check that the styles.css is imported into the index.js
+    4. Check that the styles.css is in the src folder. 
+    5. Confirm that the postcss config file is created
+    6. Run the following in the terminal: npm install tailwindcss postcss postcss-loader css-loader style-loader --save-dev

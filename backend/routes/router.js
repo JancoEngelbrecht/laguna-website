@@ -7,6 +7,7 @@ const schemas = require('../models/schemas')
 router.use(express.json()); 
 
 //Note 3 
+// Add contact to the Database
 router.post('/contact', async (req, res) => {
     const { name, email, message } = req.body; 
     
@@ -22,6 +23,7 @@ router.post('/contact', async (req, res) => {
     res.end()
 });
 
+// Add a Product to the Database
 router.post('/products', async (req, res) => {
   try {
     const { name, price, image, descript } = req.body;
@@ -31,7 +33,8 @@ router.post('/products', async (req, res) => {
     const saveProduct = await newProduct.save();
   
     if (saveProduct) {
-      res.status(200).json({ message: 'Product submitted successfully' });
+      console.log("Product Submit Successful")
+      res.json(productData);
     } else {
       res.send('Failed to submit Product');
     }
@@ -41,6 +44,7 @@ router.post('/products', async (req, res) => {
   }
 });
 
+// Retrieve all Products from the DataBase
 router.get('/products', async (req, res) => {
     try {
         const products = await schemas.Product.find();
@@ -61,6 +65,7 @@ router.get('/products', async (req, res) => {
     res.end()
 });
 
+// Retrieve all products from Database with their IDs
 router.get('/products/:id', async (req, res) => {
     try {
       const productId = req.params.id;
@@ -79,6 +84,7 @@ router.get('/products/:id', async (req, res) => {
     res.end()
   });
 
+// Update product in the Database per their IDs
 router.put('/products/:id', async (req, res) => {
     try {
       const updatedProduct = await schemas.Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -90,6 +96,7 @@ router.put('/products/:id', async (req, res) => {
     res.end()
   });
 
+  // Delete product in the Database per their IDs
   router.delete('/products/:id', async (req, res) => {
     try {
       const deletedProduct = await schemas.Product.findByIdAndDelete(req.params.id);

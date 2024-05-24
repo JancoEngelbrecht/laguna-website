@@ -37,23 +37,19 @@
     - Start with the Product page.(DONE) 
     - Link the showroom data to a database (DONE)
     - Add Images to the Database (DONE)
-    - Make updates to the showroom data on a settings page. (IN-PROGRESS)
+    - Make updates to the showroom data on a settings page. (DONE)
         - Fix the Botton Banner position on the page. (DONE)
         - List of all the entries and fields and update existing data in DB (DONE)
         - Add products and delete products (DONE)
         - Upload Image (DONE)
         - Add Description Field (DONE)
+        - Add a Search Function (DONE)
 
-7. Create a Dropdown to search Products 
-    Tailwind Installation: 
-    1. Check that the path is correct in config file
-    2. Check that the config file is in the root
-    3. Check that the styles.css is imported into the index.js
-    4. Check that the styles.css is in the src folder. 
-    5. Confirm that the postcss config file is created
-    6. Run the following in the terminal: npm install tailwindcss postcss postcss-loader css-loader style-loader --save-dev
+7. Create a Dropdown 
 
 8. Update All Button.
+
+8. Add a Map to Contact Us
 
 8. Create a Basket and a PayGate
 

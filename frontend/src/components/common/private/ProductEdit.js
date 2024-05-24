@@ -17,6 +17,7 @@ const ProductEdit = ({ product, onUpdate, onDelete }) => {
     }));
   };
 
+  // Adding Product Images
   const handleImageDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
     const reader = new FileReader();
@@ -63,17 +64,15 @@ const ProductEdit = ({ product, onUpdate, onDelete }) => {
   };
 
   // Delete Data from the DB
-  const handleDelete = () => {
-    axios
-      .delete(`http://localhost:4000/products/${localProduct._id}`)
-      .then(() => {
-        setError(null);
-        onDelete(); // Updates the ProductEditList.js due to the dependancy
-      })
-      .catch((error) => {
-        console.error(error);
-        setError('Failed to delete product');
-      });
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:4000/products/${localProduct._id}`);
+      setError(null);
+      onDelete(localProduct._id); // Updates the ProductEditList.js due to the dependency
+    } catch (error) {
+      console.error(error);
+      setError('Failed to delete product');
+    }
   };
 
   return (
