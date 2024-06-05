@@ -1,23 +1,20 @@
 import React, { useState, useCallback } from 'react';
 import axios from 'axios';
-import {useDropzone} from 'react-dropzone'
+import { useDropzone } from 'react-dropzone';
 
 const ProductEdit = ({ product, onUpdate, onDelete }) => {
-  // Set the Product State Based on the data passed down by ProductEditList.
   const [localProduct, setLocalProduct] = useState({ ...product });
   const [error, setError] = useState(null);
   const [imagePreview, setImagePreview] = useState(product.image || '');
 
-  // Manage Change to Form Inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLocalProduct((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
-  // Adding Product Images
   const handleImageDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
     const reader = new FileReader();
@@ -43,30 +40,53 @@ const ProductEdit = ({ product, onUpdate, onDelete }) => {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: handleImageDrop,
     accept: {
-      'image/*': ['.jpeg', '.png']
-    }
+      'image/*': ['.jpeg', '.png'],
+    },
   });
 
-  // Add the Changed Data to the DB
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .put(`http://localhost:4000/products/${localProduct._id}`, localProduct)
-      .then(() => {
-        alert("Product Updated Successfully")
-        setError(null);
-        onUpdate(); // Updates the ProductEditList.js due to the dependancy
-      })
-      .catch((error) => {
-        console.error(error);
-        setError('Failed to update product data');
-      });
+  
+    try {
+      // Update the product in the products collection
+      await axios.put(`http://localhost:4000/products/${localProduct._id}`, localProduct);
+  
+      // Fetch the basket items if the localProduct._id matches identity
+      const response = await axios.get(`http://localhost:4000/basket?identity=${localProduct._id}`);
+      const basketItems = response.data;
+      console.log(basketItems)
+
+      // Iterate through the basket items array
+      for (const basketItem of basketItems) {
+        console.log(basketItem.identity, localProduct._id);
+      
+        if (basketItem && basketItem.identity === localProduct._id) {
+          await axios.put(`http://localhost:4000/basket?identity=${basketItem.identity}`, {
+            price: localProduct.price,
+            image: localProduct.image,
+            descript: localProduct.descript,
+          });
+          console.log(`Basket item with identity ${basketItem.identity} updated successfully`);
+        } else {
+          console.log(`Basket item with identity ${basketItem.identity} not found`);
+        }
+      }
+  
+      alert('Product Updated Successfully');
+      setError(null);
+      onUpdate(); // Updates the ProductEditList.js due to the dependency
+    } catch (error) {
+      console.error(error);
+      setError('Failed to update product data');
+    }
   };
 
-  // Delete Data from the DB
   const handleDelete = async () => {
     try {
+      // Delete the product from the products collection
       await axios.delete(`http://localhost:4000/products/${localProduct._id}`);
+
+      alert('Product Deleted Successfully');
       setError(null);
       onDelete(localProduct._id); // Updates the ProductEditList.js due to the dependency
     } catch (error) {

@@ -47,16 +47,73 @@
 
 7. Create a Dropdown (DONE)
 
-8. Update All Button.
-
 8. Add a Map to Contact Us (DONE)
+    - Implement Leaflet
+    - Update the CSS/Tailwind to accomodate small screens
 
-8. Create a Basket and a PayGate
+9. Create a Product Basket (IN PROGRESS)
+    - Add from product page to the Customer Basket (DONE)
+    - Set up the Backend to accomodate the product submission and fetch (DONE)
+    - Add a remove button for the Basket (DONE)
+    - Add a quantity and be able to update it in the Basket. (DONE)
+    - Update the Basket with the latest info from the UserSettings when updated. (IN-PROGRESS)
+        - Make sure it checks throught the entire basket and make the updates to the necessary Identities. (DONE)
+        - Fix Checkout Quantity Update (DONE)
+        - Apply the fixes to the Delete function too. (NEXT)
+
+
+10. Add a Out of Stock Button in the UserSettings. Button should Display Out-of-Stock Text. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8. Create a Basket and a PayGate (In-Progress)
+
+    1. Post Basket to DB (NEXT)
+            - When button clicked, Product should add to array in DB (Add product component as example)
+            - Basket should fetch the array of products and display them in a list. 
+
+
+    - Customer Register and Sign-in 
+        - Google Authentication for Customers
+    - Use customerID to save product Basket to the DB for personalization
+    - When Pay the payment is approved, the Product Basket should clear in DB and the Data should be added to a UserProductHistoryTable.
+
+    
+    - Design Basket Component
+    - Implement Add to Basket Functionallity
+    - Create a Paygate Component
+    - Integrate a Payment Gateway
+    - Handle Payment Responses
+    - Update Basket and Inventory
+    - Security and Validations
+    - Testing
 
 9. Animations
-
-10. Auth0 user Permissions and Access
 
 11. Improve the speed of rendering quality images from MongoDB
 
 11. Production the Application 
+
+8. Update All Button.

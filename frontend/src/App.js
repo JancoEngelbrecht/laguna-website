@@ -6,6 +6,7 @@ import PrivateRoute from './routes/PrivateRoutes';
 import UserSettings from './pages/private/usersettings';
 import Contact from './pages/global/contact';
 import Products from './pages/global/products'
+import Checkout from './pages/global/checkout';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
             <Route path ="/" element={<Home />} />
             <Route path="contact" element={<Contact />} />
             <Route path="products" element={<Products />} />
+            <Route path="checkout" element={<Checkout />} />
     
             <Route path="user" element={<PrivateRoute />} >
               <Route index element={<UserSettings />} />

@@ -1,117 +1,219 @@
-//Note 1
-const express = require('express'); 
+const express = require('express');
 const router = express.Router();
-const schemas = require('../models/schemas')
+const schemas = require('../models/schemas');
 
-//Note 2
-router.use(express.json()); 
+router.use(express.json());
 
-//Note 3 
+/*___________________________POST__________________________*/
 // Add contact to the Database
 router.post('/contact', async (req, res) => {
-    const { name, email, message } = req.body; 
-    
-    const contactData = {name: name, email: email, message: message}
-    const newContact = new schemas.Contact(contactData)
-    const saveContact = await newContact.save()
-    if (saveContact) {
-    res.status(200).json({ message: 'Form submitted successfully' });
-    } else {
-        res.send('Failed to submit Form')
-    }
+  const { name, email, message } = req.body;
 
-    res.end()
+  const contactData = { name, email, message };
+  const newContact = new schemas.Contact(contactData);
+  const saveContact = await newContact.save();
+  if (saveContact) {
+    res.status(200).json({ message: 'Form submitted successfully' });
+  } else {
+    res.send('Failed to submit Form');
+  }
+
+  res.end();
 });
 
-// Add a Product to the Database
+// Add a Company Product to the ProductSchema
 router.post('/products', async (req, res) => {
   try {
     const { name, price, image, descript } = req.body;
-  
-    const productData = { name, price, image, descript }; 
+
+    const productData = { name, price, image, descript };
     const newProduct = new schemas.Product(productData);
     const saveProduct = await newProduct.save();
-  
+
     if (saveProduct) {
-      console.log("Product Submit Successful")
+      console.log("Product Submit Successful to Company Products");
       res.json(productData);
     } else {
-      res.send('Failed to submit Product');
+      res.send('Failed to submit Product to Company Products');
     }
   } catch (error) {
-    console.error('Error submitting Product', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error('Error submitting Product to Company Products', error);
+    res.status(500).json({ error: 'Internal Server Error: Company Products POST' });
   }
 });
 
+// Add a Customer Product to the Basket Schema
+router.post('/basket', async (req, res) => {
+  try {
+    const { name, price, image, descript, quantity, identity } = req.body;
+
+    const productData = { name, price, image, descript, quantity, identity };
+    const newProduct = new schemas.Basket(productData);
+    const saveProduct = await newProduct.save();
+
+    if (saveProduct) {
+      console.log("Product Submit Successful to Customer Basket");
+      res.json(productData);
+    } else {
+      res.send('Failed to submit Product to Customer Basket');
+    }
+  } catch (error) {
+    console.error('Error submitting Product', error);
+    res.status(500).json({ error: 'Internal Server Error: Customer Basket POST' });
+  }
+});
+
+/*___________________________GET__________________________*/
+
 // Retrieve all Products from the DataBase
 router.get('/products', async (req, res) => {
-    try {
-        const products = await schemas.Product.find();
+  try {
+    const products = await schemas.Product.find();
 
-        // Format price to have 2 decimals
-        const productsWithFormattedPrice = products.map(product => ({
-            ...product.toObject(),
-            price: parseFloat(product.price).toFixed(2)
-        }));
+    // Format price to have 2 decimals
+    const productsWithFormattedPrice = products.map(product => ({
+      ...product.toObject(),
+      price: parseFloat(product.price).toFixed(2),
+    }));
 
-        res.status(200).json(productsWithFormattedPrice);
-        
-    } catch (error) {
-        console.error('Error fetching products', error);
-        res.status(500).json({ message: 'Internal Server Error' });
-    }
+    res.status(200).json(productsWithFormattedPrice);
+  } catch (error) {
+    console.error('Error fetching products', error);
+    res.status(500).json({ message: 'Internal Server Error: Company Product GET' });
+  }
 
-    res.end()
+  res.end();
 });
 
 // Retrieve all products from Database with their IDs
 router.get('/products/:id', async (req, res) => {
-    try {
-      const productId = req.params.id;
-      const product = await schemas.Product.findById(productId);
-  
-      if (!product) {
-        return res.status(404).json({ error: 'Product not found' });
-      }
-  
-      res.json(product);
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Failed to fetch product' });
+  try {
+    const productId = req.params.id;
+    const product = await schemas.Product.findById(productId);
+
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
     }
 
-    res.end()
-  });
+    res.json(product);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch product' });
+  }
+
+  res.end();
+});
+
+// Retrieve Customer Products from the Basket
+router.get('/basket', async (req, res) => {
+  try {
+    const products = await schemas.Basket.find();
+
+    // Format price to have 2 decimals
+    const productsWithFormattedPrice = products.map(product => ({
+      ...product.toObject(),
+      price: parseFloat(product.price).toFixed(2),
+    }));
+
+    res.status(200).json(productsWithFormattedPrice);
+  } catch (error) {
+    console.error('Error fetching products from Basket', error);
+    res.status(500).json({ message: 'Internal Server Error: Customer Basket GET' });
+  }
+
+  res.end();
+});
+
+// Retrieve Customer Products with IDs from the Basket
+router.get('/basket', async (req, res) => {
+  try {
+    const { identity } = req.query; // Extract 'identity' from query parameters
+    const product = await schemas.Basket.findOne({ identity: identity }); // Find the product by 'identity'
+
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    res.json(product);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch product' });
+  }
+});
+
+/*___________________________PUT__________________________*/
 
 // Update product in the Database per their IDs
 router.put('/products/:id', async (req, res) => {
-    try {
-      const updatedProduct = await schemas.Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
-      res.json(updatedProduct);
-    } catch (err) {
-      res.status(500).json({ error: 'Failed to update product' });
+  try {
+    const updatedProduct = await schemas.Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json(updatedProduct);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update Company product' });
+  }
+
+});
+
+// Update BasketProduct Quantity
+router.put('/basket/:id', async (req, res) => {
+  try {
+    const updatedProduct = await schemas.Basket.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json(updatedProduct);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update BasketProductQty' });
+  }
+});
+
+// Update BasketProduct Quantity in the Database per their IDs
+router.put('/basket', async (req, res) => {
+  const { identity } = req.query;
+  const { price, image, descript } = req.body;
+
+  console.log(`Received update request for identity: ${identity}`);
+  console.log('Update data:', { price, image, descript });
+
+  try {
+    const result = await schemas.Basket.updateMany(
+      { identity: identity },
+      { $set: { price, image, descript } }
+    );
+
+  } catch (error) {
+    console.error('Error updating basket item:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+/*___________________________DELETE__________________________*/
+
+// Delete product from Company Products using their productIDs
+router.delete('/products/:id', async (req, res) => {
+  try {
+    const deletedProduct = await schemas.Product.findByIdAndDelete(req.params.id);
+    if (!deletedProduct) {
+      return res.status(404).json({ error: 'Product not found in Company Products' });
     }
+    res.json(deletedProduct);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to delete product from Company Products' });
+  }
+});
 
-    res.end()
-  });
-
-  // Delete product in the Database per their IDs
-  router.delete('/products/:id', async (req, res) => {
-    try {
-      const deletedProduct = await schemas.Product.findByIdAndDelete(req.params.id);
-      if (!deletedProduct) {
-        return res.status(404).json({ error: 'Product not found' });
-      }
-      res.json(deletedProduct);
-    } catch (err) {
-      res.status(500).json({ error: 'Failed to delete product' });
+// Delete product from Customer Basket using their productIDs
+router.delete('/basket/:identity', async (req, res) => {
+  try {
+    const deletedProduct = await schemas.Basket.findByIdAndDelete(req.params.identity);
+    if (!deletedProduct) {
+      return res.status(404).json({ error: 'Product not found in Basket' });
     }
-  });
+    res.json(deletedProduct);
+    console.log('Product Delete Successful from Customer Basket');
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to delete product from Basket' });
+  }
+});
 
-
-//Note 4 
-module.exports = router;  
+module.exports = router;
 
 
 

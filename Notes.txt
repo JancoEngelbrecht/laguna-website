@@ -1,19 +1,21 @@
+Keep in Mind: 
+1. Putting a login in a dropdown does not really work well. 
+
+
+
 Auth0 Implementation:
 1. Navigate to Auth0.com
 2. Setup the Callbacks (localhost: 3000)
 3. Use Auth0 like you would use a customer AuthContext. 
 4. .env file for secret info, add to gitignore and use prefix REACT_APP_ to make it work
 
-
 Images in Database: 
  - Convert to base64 binary. 
-
 
 Add and Delete of Products: 
 - Adding and deleting the added product after each other does not work. The Added Product only gets a DB_ID when it is submitted/browser refresh. 
 - When we add a product, it is added to the DB right away, but the browser does not refresh with each add. 
 - Doing it this way helps the webpage to be more efficient. 
-
 
 Tailwind Installation: 
     1. Check that the path is correct in config file
@@ -22,3 +24,37 @@ Tailwind Installation:
     4. Check that the styles.css is in the src folder. 
     5. Confirm that the postcss config file is created
     6. Run the following in the terminal: npm install tailwindcss postcss postcss-loader css-loader style-loader --save-dev
+
+Add a PayGate: 
+
+- Customer would need to sign-up so that we can manage their products in the DB. 
+- Use Product Component to add selected product to the DB. 
+- The DB should be setup to handle for each user
+
+{
+  "_id": ObjectId("unique_user_id"),
+  "username": "username",
+  "email": "user@example.com",
+  "password": "hashed_password",
+  "created_at": ISODate("2024-05-26T00:00:00Z"),
+  "updated_at": ISODate("2024-05-26T00:00:00Z"),
+  "products": [
+    {
+      "product_id": ObjectId("unique_product_id_1"),
+      "name": "Product Name 1",
+      "description": "Product Description 1",
+      "price": 99.99,
+      "stock": 10,
+      "posted_at": ISODate("2024-05-26T00:00:00Z")
+    },
+    {
+      "product_id": ObjectId("unique_product_id_2"),
+      "name": "Product Name 2",
+      "description": "Product Description 2",
+      "price": 49.99,
+      "stock": 5,
+      "posted_at": ISODate("2024-05-26T00:00:00Z")
+    }
+  ]
+}
+

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { NavLink } from "react-router-dom"
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars} from "react-icons/fa";
 import LoginButton from "../../common/LoginButton";
 
 
@@ -26,6 +26,7 @@ const Navbar = () => {
               <NavLink to="/" className="block px-4 py-2 hover:bg-gray-200" onClick={closeDropdown}>Home</NavLink>
               <NavLink to="/contact" className="block px-4 py-2 hover:bg-gray-200" onClick={closeDropdown}>Contact Us</NavLink>
               <NavLink to="/products" className="block px-4 py-2 hover:bg-gray-200" onClick={closeDropdown}>Products</NavLink>
+              <NavLink to="/checkout" className="block px-4 py-2 hover:bg-gray-200" onClick={closeDropdown}>Checkout</NavLink>
               <NavLink className="block px-4 py-2 hover:bg-gray-200" onClick={closeDropdown}><LoginButton /></NavLink>
             </div>)
           }
