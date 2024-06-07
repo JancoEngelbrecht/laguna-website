@@ -1,8 +1,6 @@
 Keep in Mind: 
 1. Putting a login in a dropdown does not really work well. 
 
-
-
 Auth0 Implementation:
 1. Navigate to Auth0.com
 2. Setup the Callbacks (localhost: 3000)
@@ -26,7 +24,6 @@ Tailwind Installation:
     6. Run the following in the terminal: npm install tailwindcss postcss postcss-loader css-loader style-loader --save-dev
 
 Add a PayGate: 
-
 - Customer would need to sign-up so that we can manage their products in the DB. 
 - Use Product Component to add selected product to the DB. 
 - The DB should be setup to handle for each user

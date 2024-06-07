@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { NavLink } from "react-router-dom"
 import { FaBars} from "react-icons/fa";
-import LoginButton from "../../common/LoginButton";
+import LoginButton from "../../common/global/LoginButton";
 
 
 const Navbar = () => {

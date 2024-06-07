@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AddToBasketBtn from "../checkout/AddToBasketBtn";
+import AddToBasketBtn from "../../../checkout/AddToBasketBtn";
 
 function Product({ product, addToBasket }) {
   const { name, price, image, descript } = product;

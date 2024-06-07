@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom"
-import LogoutButton from "../../common/LogoutButton";
+import LogoutButton from "../../../global/LogoutButton";
 
 
 const UserNav = () => {
@@ -9,8 +9,8 @@ const UserNav = () => {
         <div className="flex justify-between items-center">
           <div className="text-xl font-bold">Logo</div> 
           <div className="flex space-x-4">
-            <NavLink to="user" className="hover:text-gray-300">Settings</NavLink>
-            <NavLink to="user/about" className="hover:text-gray-300">About</NavLink>
+            <NavLink to="user" className="hover:text-gray-300">Product Management</NavLink>
+            <NavLink to="user/stocklist" className="hover:text-gray-300">Stocklist</NavLink>
             <LogoutButton />
           </div>
         </div>

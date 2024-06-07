@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import UserProfile from '../../../components/user/UserProfile';
-import ProductEditList from '../../../components/common/private/ProductEditList';
-import ProductAdd from '../../../components/common/private/ProductAdd';
-import AddProductButton from '../../../components/common/private/AddProductButton';
-import SearchBar from '../../../components/common/SearchBar';
+import UserProfile from '../../../components/common/private/user/UserProfile';
+import ProductEditList from '../../../components/common/private/product/ProductEditList';
+import ProductAdd from '../../../components/common/private/product/ProductAdd';
+import AddProductButton from '../../../components/common/private/product/AddProductButton';
+import SearchBar from '../../../components/common/private/product/SearchBar';
 
-const UserSettings = () => {
+const ProductManagement = () => {
   // State Management
   const [isAdding, setIsAdding] = useState(false); // Product Add Form Displayed
   const [products, setProducts] = useState([]); // Store List of Products
@@ -66,7 +66,7 @@ const UserSettings = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-2xl font-bold mb-6">Settings Page</h1>
+      <h1 className="text-2xl font-bold mb-6">Product Management Page</h1>
       <UserProfile />
       <SearchBar searchQuery={searchQuery} onSearchQueryChange={handleSearchQueryChange} />
       <div className="flex justify-center mb-4">
@@ -83,7 +83,7 @@ const UserSettings = () => {
   );
 };
 
-export default UserSettings;
+export default ProductManagement;
 
 
 // Functions are passed down to components so that the component can also execute the function in the Main Component.

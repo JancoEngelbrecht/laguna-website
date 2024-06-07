@@ -1,7 +1,7 @@
 import React from 'react';
 import mainCow from "../../../assets/images/maincow.jpg";
-import ContactForm from '../../../components/common/ContactForm';
-import LocationMap from '../../../components/common/LocationMap';
+import ContactForm from '../../../components/common/global/ContactForm';
+import LocationMap from '../../../components/common/global/LocationMap';
 
 const Contact = () => {
   return (

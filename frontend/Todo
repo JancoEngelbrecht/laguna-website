@@ -51,7 +51,7 @@
     - Implement Leaflet
     - Update the CSS/Tailwind to accomodate small screens
 
-9. Create a Product Basket (IN PROGRESS)
+9. Create a Product Basket (DONE)
     - Add from product page to the Customer Basket (DONE)
     - Set up the Backend to accomodate the product submission and fetch (DONE)
     - Add a remove button for the Basket (DONE)
@@ -61,18 +61,8 @@
         - Fix Checkout Quantity Update (DONE)
         - Apply the fixes to the Delete function too. (DONE)
 
-- Update the new Product after it has been added, not working? YOu need to refresh the webpage first ? 
 
-10. Add a Out of Stock Button in the UserSettings. Button should Display Out-of-Stock Text. 
-
-
-
-
-
-
-
-
-
+10. Add a Out of Stock Button in the UserSettings. Button should Display Out-of-Stock Text.
 
 
 

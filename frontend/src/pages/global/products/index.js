@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import ProductList from '../../../components/common/ProductList';
+import ProductList from '../../../components/common/global/product/ProductList';
 import axios from 'axios'
 
 function Products() {

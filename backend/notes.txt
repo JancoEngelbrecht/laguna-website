@@ -8,8 +8,6 @@ How to set up the Node server side:
 - Set up the index.js
 - create a routes folder and a routes.js file
 
-
-
 Setting up the Server - Index.js: 
 
 Express -> Node.js Framework for webservers
