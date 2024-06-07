@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import ProductEdit from './ProductEdit';
 
 const ProductEditList = ({ products, loading, error, onDelete }) => {
-  // useCallback to manage their execution. It will not be executed on page render or re-render, only when called.
+  
   const handleUpdate = useCallback(() => {
     console.log("Product Updated");
   }, []); 
@@ -32,9 +32,3 @@ const ProductEditList = ({ products, loading, error, onDelete }) => {
 };
 
 export default ProductEditList;
-
-//1. ProductAdd.js --> Added Success 
-//    |
-//   UserSettings/Index.js --> SetProducts
-//    |
-//   ProductEditList.js --> Fetch New Products due to the change of Dependency

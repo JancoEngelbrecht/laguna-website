@@ -59,8 +59,9 @@
     - Update the Basket with the latest info from the UserSettings when updated. (IN-PROGRESS)
         - Make sure it checks throught the entire basket and make the updates to the necessary Identities. (DONE)
         - Fix Checkout Quantity Update (DONE)
-        - Apply the fixes to the Delete function too. (NEXT)
+        - Apply the fixes to the Delete function too. (DONE)
 
+- Update the new Product after it has been added, not working? YOu need to refresh the webpage first ? 
 
 10. Add a Out of Stock Button in the UserSettings. Button should Display Out-of-Stock Text. 
 

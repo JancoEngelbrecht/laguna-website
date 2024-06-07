@@ -164,7 +164,7 @@ router.put('/basket/:id', async (req, res) => {
   }
 });
 
-// Update BasketProduct Quantity in the Database per their IDs
+// Update BasketProduct in the Database per their IDs
 router.put('/basket', async (req, res) => {
   const { identity } = req.query;
   const { price, image, descript } = req.body;
@@ -199,17 +199,22 @@ router.delete('/products/:id', async (req, res) => {
   }
 });
 
-// Delete product from Customer Basket using their productIDs
-router.delete('/basket/:identity', async (req, res) => {
+router.delete('/basket', async (req, res) => {
+  const { identity } = req.query;
+
+  console.log(`Received Delete request for identity: ${identity}`);
+
   try {
-    const deletedProduct = await schemas.Basket.findByIdAndDelete(req.params.identity);
-    if (!deletedProduct) {
-      return res.status(404).json({ error: 'Product not found in Basket' });
+    const result = await schemas.Basket.deleteMany({ identity: identity });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: 'No basket items found with the given identity' });
     }
-    res.json(deletedProduct);
-    console.log('Product Delete Successful from Customer Basket');
-  } catch (err) {
-    res.status(500).json({ error: 'Failed to delete product from Basket' });
+
+    res.status(200).json({ message: 'Basket items deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting basket item:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 

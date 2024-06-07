@@ -86,14 +86,30 @@ const ProductEdit = ({ product, onUpdate, onDelete }) => {
       // Delete the product from the products collection
       await axios.delete(`http://localhost:4000/products/${localProduct._id}`);
 
-      alert('Product Deleted Successfully');
-      setError(null);
-      onDelete(localProduct._id); // Updates the ProductEditList.js due to the dependency
-    } catch (error) {
-      console.error(error);
-      setError('Failed to delete product');
-    }
-  };
+     // Fetch the basket items if the localProduct._id matches identity
+     const response = await axios.get(`http://localhost:4000/basket?identity=${localProduct._id}`);
+     const basketItems = response.data;
+
+     // Iterate through the basket items array
+     for (const basketItem of basketItems) {
+       console.log(basketItem.identity, localProduct._id);
+     
+       if (basketItem && basketItem.identity === localProduct._id) {
+         await axios.delete(`http://localhost:4000/basket?identity=${basketItem.identity}`);
+         console.log(`Basket item with identity ${basketItem.identity} Deleted successfully`);
+       } else {
+         console.log(`Basket item with identity ${basketItem.identity} not found`);
+       }
+     }
+ 
+     alert('Product Deleted Successfully');
+     setError(null);
+     onDelete(localProduct._id); // Updates the ProductEditList.js due to the dependency
+   } catch (error) {
+     console.error(error);
+     setError('Failed to update product data');
+   }
+ };
 
   return (
     <div className="mb-10 p-6 bg-white shadow-lg rounded-lg">
