@@ -164,7 +164,7 @@ router.put('/basket/:id', async (req, res) => {
   }
 });
 
-// Update BasketProduct in the Database per their IDs
+// Update BasketProduct in the Database per their Identity
 router.put('/basket', async (req, res) => {
   const { identity } = req.query;
   const { price, image, descript } = req.body;
@@ -199,6 +199,7 @@ router.delete('/products/:id', async (req, res) => {
   }
 });
 
+// Delete BasketProducts based on their Identity
 router.delete('/basket', async (req, res) => {
   const { identity } = req.query;
 
@@ -215,6 +216,19 @@ router.delete('/basket', async (req, res) => {
   } catch (error) {
     console.error('Error deleting basket item:', error);
     res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// Delete Product from Basket
+router.delete('/basket/:id', async (req, res) => {
+  try {
+    const deletedProduct = await schemas.Basket.findByIdAndDelete(req.params.id);
+    if (!deletedProduct) {
+      return res.status(404).json({ error: 'Product not found in Company Products' });
+    }
+    res.json(deletedProduct);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to delete product from Company Products' });
   }
 });
 

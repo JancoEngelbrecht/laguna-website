@@ -2,9 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import BasketProduct from './BasketProduct';
 
+
 const BasketList = ({ products, loading, handleProductDelete, handleProductUpdate }) => {
   // Delete Data from the DB
   const handleDeleteClick = async (product) => {
+    console.log(product._id)
     try {
       await axios.delete(`http://localhost:4000/basket/${product._id}`);
       handleProductDelete();
@@ -23,6 +25,8 @@ const BasketList = ({ products, loading, handleProductDelete, handleProductUpdat
   };
 
   if (loading) return <div className="text-center py-10">Loading...</div>;
+
+  const vatRate = 0.2; // Example VAT rate (20%)
 
   return (
     <div>

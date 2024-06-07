@@ -62,24 +62,19 @@
         - Apply the fixes to the Delete function too. (DONE)
 
 
-10. Add a Out of Stock Button in the UserSettings. Button should Display Out-of-Stock Text.
+10. Checkout Component
 
 
 
 
+- Link Basket to DB (IN-PROGRESS)
+    - Backend
+        - Schema
+        - Router Endpoints
+    - Frontend
+        - Fetch
 
-
-
-
-
-
-
-
-
-
-
-
-8. Create a Basket and a PayGate (In-Progress)
+- Create a Basket and a PayGate (In-Progress)
 
     1. Post Basket to DB (NEXT)
             - When button clicked, Product should add to array in DB (Add product component as example)
@@ -101,10 +96,5 @@
     - Security and Validations
     - Testing
 
-9. Animations
-
-11. Improve the speed of rendering quality images from MongoDB
-
-11. Production the Application 
-
-8. Update All Button.
+- Add a Out of Stock Button in the UserSettings. Button should Display Out-of-Stock Text.
+- Production the Application 

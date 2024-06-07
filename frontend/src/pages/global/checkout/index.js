@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import BasketList from '../../../components/checkout/BasketList';
+import SummaryCheckout from '../../../components/checkout/SummaryCheckout';
 import axios from 'axios';
 
 const Checkout = () => {
@@ -37,13 +38,18 @@ const Checkout = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-semibold mb-4">Checkout</h1>
-      <div>
-        <BasketList
-          products={products}
-          loading={loading}
-          handleProductDelete={handleProductDelete}
-          handleProductUpdate={handleProductUpdate}
-        />
+      <div className="flex">
+        <div className="w-3/4 mr-4">
+          <BasketList
+            products={products}
+            loading={loading}
+            handleProductDelete={handleProductDelete}
+            handleProductUpdate={handleProductUpdate}
+          />
+        </div>
+        <div className="w-1/4">
+          <SummaryCheckout products={products} vatRate={0.2} />
+        </div>
       </div>
     </div>
   );
