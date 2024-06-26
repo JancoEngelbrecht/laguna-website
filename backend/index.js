@@ -1,39 +1,42 @@
-//Note 1.
-const express = require('express') 
-const cors = require('cors')
-const bodyParser = require('body-parser') 
-const router = require('./routes/router') 
-const mongoose = require('mongoose')
-require('dotenv/config') // Loads variables into the Node.js environment through the use of a dotemv package. Making them accesible to objects of Node.js. 
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+require('dotenv/config'); // Load environment variables
 
-const app = express()  
+const app = express();
 
-//Note 2.
+// Set up body parser middleware
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
-//Note 3.
+// Set up CORS options
 const corsOptions = {
     origin: '*', 
     credentials: true, 
     optionSuccessStatus: 200 
-}
+};
 
-//Note 4.
-app.use(cors(corsOptions)) 
-app.use('/', router) 
+// Use CORS middleware
+app.use(cors(corsOptions));
 
+// Use the main router index
+const routes = require('./routes'); 
+app.use('/', routes);
 
-mongoose.connect(process.env.DB_URI)
-.then(() => console.log('DB Connected!'))
-.catch((err) => console.log(err))
-
-//Note 5.
-const port = process.env.PORT || 4000 // Process is a object of Node.js, and it can access the .env variables in the Node.js environment. 
-const server = app.listen(port, () => {
-    console.log(`Server is running on ${port}`)
+// Connect to MongoDB
+mongoose.connect(process.env.DB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 })
+.then(() => console.log('DB Connected!'))
+.catch((err) => console.log('DB Connection Error:', err));
 
+// Start the server
+const port = process.env.PORT || 4000; // Set the port from environment variables or default to 4000
+const server = app.listen(port, () => {
+    console.log(`Server is running on ${port}`);
+});
 
 // NOTES
     //1. 

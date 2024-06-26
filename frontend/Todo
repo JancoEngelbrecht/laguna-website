@@ -56,14 +56,33 @@
     - Set up the Backend to accomodate the product submission and fetch (DONE)
     - Add a remove button for the Basket (DONE)
     - Add a quantity and be able to update it in the Basket. (DONE)
-    - Update the Basket with the latest info from the UserSettings when updated. (IN-PROGRESS)
+    - Update the Basket with the latest info from the UserSettings when updated. (DONE)
         - Make sure it checks throught the entire basket and make the updates to the necessary Identities. (DONE)
         - Fix Checkout Quantity Update (DONE)
         - Apply the fixes to the Delete function too. (DONE)
+    
+10. Checkout Component (DONE)
+    - Create a Summary Component (DONE)
+
+11. Customer Register and Login (IN PROGRESS)
+    - Auth0 Roles implement (NEXT)
+        - Understand what data you are getting from Auth0
+            - How to update the UserMetaData in Auth0
+        - Understand how the Role and Auth Provider uses that data. 
+        - No Role = Customer 
+        - Role = Owner (Add roles in backend )
+        - Fix RoleProvider
+        - Fix AuthProvider and Private Routes
 
 
-10. Checkout Component
-    - Create a Summary Component
+
+
+
+
+
+
+
+
 
 
 
