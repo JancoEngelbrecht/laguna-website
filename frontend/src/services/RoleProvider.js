@@ -1,18 +1,34 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const RoleContext = createContext();
 
 const RoleProvider = ({ children }) => {
-  const { user, isAuthenticated } = useAuth0();
-  const [roles, setRoles] = useState(['']);
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const [roles, setRoles] = useState([]);
 
   useEffect(() => {
-    if (isAuthenticated && user) {
-      const userRoles = user[`${process.env.REACT_APP_AUTH_DOMAIN}/roles`] || [];
-      setRoles(userRoles);
-    }
-  }, [user, isAuthenticated]);
+    const fetchUserRoles = async () => {
+      try {
+        if (isAuthenticated) {
+          const accessToken = await getAccessTokenSilently();
+          const response = await axios.get('http://localhost:4000/auth0/user_roles', {
+            headers: {
+              Authorization: `Bearer ${accessToken}`
+            }
+          });
+          const userWithRoles = response.data;
+          setRoles(userWithRoles.roles); // Update roles state with roles array
+          // console.log('User roles:', userWithRoles.roles);
+        }
+      } catch (error) {
+        console.error('Error fetching user roles:', error);
+      }
+    };
+
+    fetchUserRoles();
+  }, [isAuthenticated, getAccessTokenSilently]);
 
   return (
     <RoleContext.Provider value={{ roles }}>
@@ -24,7 +40,3 @@ const RoleProvider = ({ children }) => {
 export const useRoles = () => useContext(RoleContext);
 
 export default RoleProvider;
-
-
-
-// In order to access the Aut0 roles for each user, you need to add a flow which add the user Role meta data to the user when they register. 

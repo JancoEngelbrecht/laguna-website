@@ -7,6 +7,8 @@ const PrivateRoute = ({ roles: requiredRoles }) => {
   const { isAuthenticated, isLoading } = useAuth0();
   const { roles: userRoles } = useRoles();
 
+  console.log(requiredRoles.lenght === undefined)
+
   if (isLoading) {
     return <div>Loading...</div>; // or a spinner component
   }
@@ -15,7 +17,9 @@ const PrivateRoute = ({ roles: requiredRoles }) => {
     return <Navigate to="/" />;
   }
 
-  const hasRequiredRole = requiredRoles.some(role => userRoles.includes(role));
+  // Check if no specific roles are required or if the user has the required roles
+  const hasRequiredRole = requiredRoles.lenght === undefined || requiredRoles.some(role => userRoles.includes(role));
+  
 
   if (!hasRequiredRole) {
     return <Navigate to="/" />;

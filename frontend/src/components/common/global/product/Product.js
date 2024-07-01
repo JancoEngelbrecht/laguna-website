@@ -33,7 +33,7 @@ function Product({ product, addToBasket }) {
       </div>
 
       <div className="flex items-center mt-4">
-        {isAuthenticated && isCustomer ? (
+        {isAuthenticated ? (
           <AddToBasketBtn onAddClick={handleAdd} />
         ) : (
           <p className="text-red-500">Only registered customers can add to basket</p>

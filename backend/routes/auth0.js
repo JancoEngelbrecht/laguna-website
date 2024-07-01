@@ -1,80 +1,59 @@
 const express = require('express');
 const axios = require('axios');
-require('dotenv').config();
 
 const router = express.Router();
 
-// Function to get Auth0 Management API token
-const getManagementToken = async () => {
-  const options = {
-    method: 'POST',
-    url: `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
-    headers: { 'content-type': 'application/json' },
-    data: {
-      grant_type: 'client_credentials',
-      client_id: process.env.AUTH0_CLIENT_ID,
-      client_secret: process.env.AUTH0_CLIENT_SECRET,
-      audience: `https://${process.env.AUTH0_DOMAIN}/api/v2/`
+// Function to fetch user ID from Auth0 using the token
+const fetchUserIdFromToken = async (token) => {
+  const response = await axios.get(`https://${process.env.AUTH0_DOMAIN}/userinfo`, {
+    headers: {
+      'Authorization': `Bearer ${token}`
     }
-  };
+  });
+  return response.data.sub;
+};
+
+// Middleware function to authenticate user
+const authenticateUser = async (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+  const token = authHeader.split(' ')[1];
 
   try {
-    const response = await axios(options);
-    return response.data.access_token;
+    const userId = await fetchUserIdFromToken(token);
+    req.auth = {
+      userId: userId // Get user ID from the token response
+    };
+    next();
   } catch (error) {
-    console.error('Error getting management token:', error.message);
-    throw error;
+    console.error('Error fetching user ID from token:', error.message);
+    return res.status(401).json({ message: 'Unauthorized' });
   }
 };
 
-// Route to get users from Auth0
-router.get('/auth0/users', async (req, res) => {
+// Route to get roles for the authenticated user
+router.get('/auth0/user_roles', authenticateUser, async (req, res) => {
   try {
-    const token = await getManagementToken();
-    const options = {
+    const userId = req.auth.userId; // Get user ID from authenticated request
+    const token = process.env.AUTH0_MGT_TOKEN; // Get the management token
+
+    const rolesOptions = {
       method: 'GET',
-      url: `https://${process.env.AUTH0_DOMAIN}/api/v2/users`,
+      url: `https://${process.env.AUTH0_DOMAIN}/api/v2/users/${userId}/roles`,
       headers: {
         'content-type': 'application/json',
         'authorization': `Bearer ${token}`
       }
     };
 
-    const response = await axios(options);
-    const users = response.data;
+    const rolesResponse = await axios(rolesOptions);
+    const roles = rolesResponse.data.map(role => role.name);
 
-    // Fetch roles for each user concurrently using Promise.all
-    const usersWithRoles = await Promise.all(users.map(async (user) => {
-      const rolesOptions = {
-        method: 'GET',
-        url: `https://${process.env.AUTH0_DOMAIN}/api/v2/users/${user.user_id}/roles`,
-        headers: {
-          'content-type': 'application/json',
-          'authorization': `Bearer ${token}`
-        }
-      };
-      try {
-        const rolesResponse = await axios(rolesOptions);
-        const roles = rolesResponse.data.map(role => role.name);
-
-        return {
-          user_id: user.user_id,
-          name: user.name,
-          roles: roles
-        };
-      } catch (error) {
-        console.error(`Error fetching roles for user ${user.user_id}:`, error.message);
-        return {
-          user_id: user.user_id,
-          name: user.name,
-          roles: []
-        };
-      }
-    }));
-
-    res.json(usersWithRoles); // Send users with roles data back to client
+    res.json({ user_id: userId, roles });
   } catch (error) {
-    console.error('Error fetching users or roles:', error.message);
+    console.error('Error fetching user roles:', error.message);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });

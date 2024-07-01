@@ -15,17 +15,17 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="contact" element={<Contact />} />
         <Route path="products" element={<Products />} />
-        <Route path="checkout" element={<Checkout />} />
+        
 
         {/* Define roles for the user routes */}
-        <Route path="user" element={<PrivateRoute roles={['Janco']} />}>
+        <Route path="user" element={<PrivateRoute roles={['Personnel']} />}>
           <Route index element={<ProductManagement />} />
           <Route path="stocklist" element={<Stocklist />} />
         </Route>
 
         {/* Define a customer route as an example */}
-        <Route path="customer" element={<PrivateRoute roles={['']} />}>
-          
+        <Route path="customer" element={<PrivateRoute roles={[]} />}>
+          <Route path="checkout" element={<Checkout />} />
         </Route>
       </Route>
     </Routes>

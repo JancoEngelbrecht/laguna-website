@@ -64,15 +64,13 @@
 10. Checkout Component (DONE)
     - Create a Summary Component (DONE)
 
-11. Customer Register and Login (IN PROGRESS)
-    - Auth0 Roles implement (NEXT)
-        - Understand what data you are getting from Auth0
-            - How to update the UserMetaData in Auth0
-        - Understand how the Role and Auth Provider uses that data. 
-        - No Role = Customer 
-        - Role = Owner (Add roles in backend )
-        - Fix RoleProvider
-        - Fix AuthProvider and Private Routes
+11. Customer Register and Login (DONE)
+    - Auth0 Roles implement (DONE)
+        - Configure the Managment API from Auth0 to access the UserRoles (DONE)
+        - First you need to implement the role provider (DONE)
+        - Set up the Backend to only get the Role for the authenticated user. (DONE)
+        - Fix RoleProvider (DONE)
+        - Fix AuthProvider and Private Routes (DONE)
 
 
 
@@ -86,12 +84,19 @@
 
 
 
-- Link Basket to DB (IN-PROGRESS)
+12. Customer Personal Basket (In-Progress)
+    - We need to store each user's of their own products
+    - Link Basket to DB 
     - Backend
         - Schema
         - Router Endpoints
     - Frontend
         - Fetch
+
+
+
+
+
 
 - Create a Basket and a PayGate (In-Progress)
 

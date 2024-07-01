@@ -7,6 +7,14 @@ Auth0 Implementation:
 3. Use Auth0 like you would use a customer AuthContext. 
 4. .env file for secret info, add to gitignore and use prefix REACT_APP_ to make it work
 
+Auth0 Token API:
+1. Testing should be created manually
+2. Production should request via the API 
+
+.env
+1. Check that file is included in the backend and frontend file
+2. Remove the git tracking if the .gitignore does not work. 
+
 Images in Database: 
  - Convert to base64 binary. 
 
