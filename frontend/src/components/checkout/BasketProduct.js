@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import RemoveFromBasketBtn from '../checkout/RemoveFromBasketBtn';
 
-function BasketProduct({ product, deleteFromBasket, updateBasketProduct }) {
+function BasketProduct({ userId, product, deleteFromBasket, updateBasketProduct, calculateVAT }) {
   const [localProduct, setLocalProduct] = useState({ ...product });
-  const { image, name, price, descript, quantity } = localProduct;
-  
+
+  const { _id, image, name, price, descript, quantity } = localProduct;
+
   const handleUpdate = (event) => {
     const { name, value } = event.target;
-    setLocalProduct((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-    updateBasketProduct(product._id, { ...localProduct, [name]: value });
+    const updatedProduct = { ...localProduct, [name]: value };
+    setLocalProduct(updatedProduct);
+    updateBasketProduct(_id, updatedProduct);
   };
 
   const handleDelete = () => {
@@ -22,7 +21,7 @@ function BasketProduct({ product, deleteFromBasket, updateBasketProduct }) {
     <div className="bg-white rounded-lg shadow-md p-6">
       <img src={image} alt={name} className="w-full h-64 object-cover rounded" />
       <h2 className="text-xl font-semibold mb-2">{name}</h2>
-      <p className="text-gray-600">R {parseFloat(price).toFixed(2)}</p>
+      <p className="text-gray-600">Price: R {parseFloat(price).toFixed(2)}</p>
       <p className="text-gray-600">{descript}</p>
 
       <div className="flex items-center mt-4">

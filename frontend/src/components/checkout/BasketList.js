@@ -2,31 +2,34 @@ import React from 'react';
 import axios from 'axios';
 import BasketProduct from './BasketProduct';
 
+const BasketList = ({ userId, products, loading, handleProductDelete, handleProductUpdate }) => {
 
-const BasketList = ({ products, loading, handleProductDelete, handleProductUpdate }) => {
   // Delete Data from the DB
   const handleDeleteClick = async (product) => {
-    console.log(product._id)
     try {
-      await axios.delete(`http://localhost:4000/basket/${product._id}`);
-      handleProductDelete();
+      await axios.delete(`http://localhost:4000/user/${userId}/products/${product._id}`);
+      handleProductDelete(product);
     } catch (error) {
-      console.error(error);
+      console.error('Error deleting product from basket:', error);
     }
   };
 
+  // Update Data in the DB
   const handleUpdateClick = async (productId, updatedProductData) => {
     try {
-      await axios.put(`http://localhost:4000/basket/${productId}`, updatedProductData);
-      handleProductUpdate(); // Assuming this function updates the state after successful update
+      await axios.put(`http://localhost:4000/user/${userId}/products/${productId}`, updatedProductData);
+      handleProductUpdate(productId, updatedProductData);
     } catch (error) {
-      console.error('Error updating product quantity:', error);
+      console.error('Error updating product in basket:', error);
     }
+  };
+
+  // Assuming VAT calculation function
+  const calculateVAT = (price) => {
+    return price * 0.2; // Example VAT rate (20%)
   };
 
   if (loading) return <div className="text-center py-10">Loading...</div>;
-
-  const vatRate = 0.2; // Example VAT rate (20%)
 
   return (
     <div>
@@ -34,9 +37,11 @@ const BasketList = ({ products, loading, handleProductDelete, handleProductUpdat
         {products.map((product) => (
           <BasketProduct 
             key={product._id} 
+            userId={userId}
             product={product} 
             deleteFromBasket={handleDeleteClick} 
             updateBasketProduct={handleUpdateClick}
+            calculateVAT={calculateVAT} // Pass VAT calculation function to child component
           />
         ))}
       </div>

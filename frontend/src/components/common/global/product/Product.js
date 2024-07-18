@@ -1,19 +1,15 @@
 import React, { useState } from "react";
 import AddToBasketBtn from "../../../checkout/AddToBasketBtn";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useRoles } from "../../../../services/RoleProvider";
 
 function Product({ product, addToBasket }) {
   const { name, price, image, descript } = product;
   const [productQty, setProductQty] = useState(1);
   const { isAuthenticated } = useAuth0();
-  const { roles } = useRoles();
 
   const handleAdd = () => {
     addToBasket(product, productQty);
   };
-
-  const isCustomer = roles.includes('customer');
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6">

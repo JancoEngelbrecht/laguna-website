@@ -20,7 +20,6 @@ const Navbar = () => {
   };
 
   const isCustomer = roles.includes(undefined);
-  console.log(isCustomer)
 
   return (
     <div className="py-4 px-6 bg-gray-800 text-white relative z-50">

@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import BasketList from '../../../components/checkout/BasketList';
 import SummaryCheckout from '../../../components/checkout/SummaryCheckout';
 import axios from 'axios';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Checkout = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { user } = useAuth0();
 
   // Fetch Basket Data
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:4000/basket');
+      const response = await axios.get(`http://localhost:4000/user/${user.sub}/products`);
       const productsWithNumericPrices = response.data.map((product) => ({
         ...product,
         price: Number(product.price),
@@ -21,17 +23,19 @@ const Checkout = () => {
       console.log(error.response);
       setLoading(false);
     }
-  };
+  }, [user]);
 
   useEffect(() => {
-    fetchProducts();
-  }, []); // Fetch once on component mount
+    if (user && user.sub) {
+      fetchProducts();
+    }
+  }, [user, fetchProducts]); // Add fetchProducts to the dependency array
 
-  const handleProductDelete = async () => {
+  const handleProductDelete = async (product) => {
     await fetchProducts(); // Refetch basket data after deletion
   };
 
-  const handleProductUpdate = async () => {
+  const handleProductUpdate = async (productId, updatedProductData) => {
     await fetchProducts(); // Refetch basket data after update
   };
 
@@ -41,6 +45,7 @@ const Checkout = () => {
       <div className="flex">
         <div className="w-3/4 mr-4">
           <BasketList
+            userId={user.sub} // Pass user.sub as userId
             products={products}
             loading={loading}
             handleProductDelete={handleProductDelete}

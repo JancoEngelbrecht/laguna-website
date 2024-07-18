@@ -72,26 +72,17 @@
         - Fix RoleProvider (DONE)
         - Fix AuthProvider and Private Routes (DONE)
 
-
-
-
-
-
-
-
-
-
-
-
-
 12. Customer Personal Basket (In-Progress)
-    - We need to store each user's of their own products
-    - Link Basket to DB 
-    - Backend
-        - Schema
-        - Router Endpoints
-    - Frontend
-        - Fetch
+    - We need to store each user's basket of their own products
+    - DB and API Setup
+        - DB Schema
+        - Router Endpoints and Frontend alignment
+            -   Post product to UserBasket (DONE)
+            -   Fetch UserBasket (DONE)
+            -   Remove Product from UserBasket (DONE)
+        - Product Configuration Changes Relect Basket
+            - Product Delete (DONE)
+            - Product Edit
 
 
 

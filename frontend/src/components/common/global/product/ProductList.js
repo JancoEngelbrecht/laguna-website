@@ -1,21 +1,28 @@
 import React from 'react';
 import Product from './Product';
 import axios from 'axios';
+import { useAuth0 } from '@auth0/auth0-react';
 
-function ProductList({ products, loading }) {
+function ProductList({ products, loading}) {
+  const { user } = useAuth0();
   const handleAddClick = async (product, quantity) => {
     if (quantity < 1) {
       alert("Please enter a valid quantity.");
       return;
     }
-    const productToAdd = { ...product, quantity, identity: product._id};
-    console.log(productToAdd)
+    
+    // Ensure the price is a number
+    const price = parseFloat(product.price);
+  
+    const productToAdd = { ...product, price, quantity, identity: product._id };
+  
     
     try {
-      await axios.post("http://localhost:4000/basket", productToAdd);
+      await axios.post(`http://localhost:4000/user/${user.sub}/products`, productToAdd);
+      alert("Product added successfully!");
     } catch (error) {
-      console.error("Error adding product to basket:", error);
-      alert("Failed to add product to basket.");
+      console.error("Error adding product to user basket:", error);
+      alert("Failed to add product to user basket.");
     }
   };
 

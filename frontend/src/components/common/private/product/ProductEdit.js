@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from 'react';
-import axios from 'axios';
 import { useDropzone } from 'react-dropzone';
 
 const ProductEdit = ({ product, onUpdate, onDelete }) => {
@@ -44,72 +43,14 @@ const ProductEdit = ({ product, onUpdate, onDelete }) => {
     },
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-  
-    try {
-      // Update the product in the products collection
-      await axios.put(`http://localhost:4000/products/${localProduct._id}`, localProduct);
-  
-      // Fetch the basket items if the localProduct._id matches identity
-      const response = await axios.get(`http://localhost:4000/basket?identity=${localProduct._id}`);
-      const basketItems = response.data;
-      console.log(basketItems)
-
-      // Iterate through the basket items array
-      for (const basketItem of basketItems) {
-        console.log(basketItem.identity, localProduct._id);
-      
-        if (basketItem && basketItem.identity === localProduct._id) {
-          await axios.put(`http://localhost:4000/basket?identity=${basketItem.identity}`, {
-            price: localProduct.price,
-            image: localProduct.image,
-            descript: localProduct.descript,
-          });
-          console.log(`Basket item with identity ${basketItem.identity} updated successfully`);
-        } else {
-          console.log(`Basket item with identity ${basketItem.identity} not found`);
-        }
-      }
-  
-      alert('Product Updated Successfully');
-      setError(null);
-      onUpdate(); // Updates the ProductEditList.js due to the dependency
-    } catch (error) {
-      console.error(error);
-      setError('Failed to update product data');
-    }
+    onUpdate(localProduct); // Pass updated product data to parent
   };
 
-  const handleDelete = async () => {
-    try {
-      // Delete the product from the products collection
-      await axios.delete(`http://localhost:4000/products/${localProduct._id}`);
-
-     // Fetch the basket items if the localProduct._id matches identity
-     const response = await axios.get(`http://localhost:4000/basket?identity=${localProduct._id}`);
-     const basketItems = response.data;
-
-     // Iterate through the basket items array
-     for (const basketItem of basketItems) {
-       console.log(basketItem.identity, localProduct._id);
-     
-       if (basketItem && basketItem.identity === localProduct._id) {
-         await axios.delete(`http://localhost:4000/basket?identity=${basketItem.identity}`);
-         console.log(`Basket item with identity ${basketItem.identity} Deleted successfully`);
-       } else {
-         console.log(`Basket item with identity ${basketItem.identity} not found`);
-       }
-     }
- 
-     alert('Product Deleted Successfully');
-     setError(null);
-     onDelete(localProduct._id); // Updates the ProductEditList.js due to the dependency
-   } catch (error) {
-     console.error(error);
-     setError('Failed to update product data');
-   }
- };
+  const handleDelete = () => {
+    onDelete(localProduct._id); // Pass product ID to parent for deletion
+  };
 
   return (
     <div className="mb-10 p-6 bg-white shadow-lg rounded-lg">

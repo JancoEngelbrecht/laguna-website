@@ -13,6 +13,8 @@ const fetchUserIdFromToken = async (token) => {
   return response.data.sub;
 };
 
+
+
 // Middleware function to authenticate user
 const authenticateUser = async (req, res, next) => {
   const authHeader = req.headers.authorization;

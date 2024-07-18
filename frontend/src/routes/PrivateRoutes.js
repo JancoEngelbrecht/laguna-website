@@ -7,8 +7,6 @@ const PrivateRoute = ({ roles: requiredRoles }) => {
   const { isAuthenticated, isLoading } = useAuth0();
   const { roles: userRoles } = useRoles();
 
-  console.log(requiredRoles.lenght === undefined)
-
   if (isLoading) {
     return <div>Loading...</div>; // or a spinner component
   }
