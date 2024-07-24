@@ -72,7 +72,7 @@
         - Fix RoleProvider (DONE)
         - Fix AuthProvider and Private Routes (DONE)
 
-12. Customer Personal Basket (In-Progress)
+12. Customer Personal Basket (DONE)
     - We need to store each user's basket of their own products
     - DB and API Setup
         - DB Schema
@@ -82,34 +82,39 @@
             -   Remove Product from UserBasket (DONE)
         - Product Configuration Changes Relect Basket
             - Product Delete (DONE)
-            - Product Edit
+            - Product Edit (DONE)
+
+- Update the UX Design of you Application to make it more eye catching. 
+    - PowerPoint Reference (DONE)
+    - Save all image Elements for use (NEXT)
+    - Implement Design with Tailwind 
+
+- Submit Order Function. 
+    - Create From to capture Customer Details (Can be a popup when the customer click the button)
+    - Set up the backend API call
+
+!!!!!!! Why can a Customer access localhost:3000/user ??? !!!!!!!
+
+- Look into Application Testing an Best Practices before you go live
+
+- Update and Fix all dependencies
+
+- Add a Out of Stock Button in the UserSettings. Button should Display Out-of-Stock Text.
+
+- Gallary for Company Photos
+
+- Production the Application 
 
 
 
 
 
 
-- Create a Basket and a PayGate (In-Progress)
-
-    1. Post Basket to DB (NEXT)
-            - When button clicked, Product should add to array in DB (Add product component as example)
-            - Basket should fetch the array of products and display them in a list. 
-
-
-    - Customer Register and Sign-in 
-        - Google Authentication for Customers
-    - Use customerID to save product Basket to the DB for personalization
+- Create PayGate (In-Progress)
     - When Pay the payment is approved, the Product Basket should clear in DB and the Data should be added to a UserProductHistoryTable.
-
-    
-    - Design Basket Component
-    - Implement Add to Basket Functionallity
     - Create a Paygate Component
     - Integrate a Payment Gateway
     - Handle Payment Responses
     - Update Basket and Inventory
     - Security and Validations
     - Testing
-
-- Add a Out of Stock Button in the UserSettings. Button should Display Out-of-Stock Text.
-- Production the Application 

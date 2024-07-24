@@ -13,9 +13,39 @@ const SummaryCheckout = ({ products, vatRate }) => {
 
   const { subtotal, vat, total } = calculateTotal();
 
-  const handlePayment = (event) => {
+  const handlePayment = async (event) => {
     event.preventDefault();
-    // Add your payment processing logic here.
+    const formData = new FormData(event.target);
+    const orderData = {
+      name: formData.get('first_name'),
+      surname: formData.get('last_name'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      message: formData.get('message'),
+      products,
+      total
+    };
+
+    try {
+      const response = await fetch('/api/order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(orderData)
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        alert('Order submitted successfully');
+      } else {
+        alert(`Error: ${result.error}`);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Failed to submit order');
+    }
+
     setModalIsOpen(false);
   };
 

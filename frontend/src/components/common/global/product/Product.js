@@ -18,6 +18,7 @@ function Product({ product, addToBasket }) {
       <p className="text-gray-600">R {parseFloat(price).toFixed(2)}</p>
       <p className="text-gray-600">{descript}</p>
 
+
       <div className="flex items-center mt-4">
         <input
           type="number"
@@ -26,13 +27,13 @@ function Product({ product, addToBasket }) {
           onChange={(e) => setProductQty(parseInt(e.target.value))}
           className="mr-4 w-16 p-2 border rounded"
         />
-      </div>
+      </div> 
 
       <div className="flex items-center mt-4">
         {isAuthenticated ? (
           <AddToBasketBtn onAddClick={handleAdd} />
         ) : (
-          <p className="text-red-500">Only registered customers can add to basket</p>
+          <p className="text-red-500"></p> // ADD TEXT HERE IF YOU WANT TO DISPLAY A MESSAGE
         )}
       </div>
     </div>
