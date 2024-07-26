@@ -16,7 +16,7 @@ const PrivateRoute = ({ roles: requiredRoles }) => {
   }
 
   // Check if no specific roles are required or if the user has the required roles
-  const hasRequiredRole = requiredRoles.length === undefined || requiredRoles.some(role => userRoles.includes(role));
+  const hasRequiredRole = requiredRoles === "" || requiredRoles.some(role => userRoles.includes(role));
   
   if (!hasRequiredRole) {
     return <Navigate to="/" />;

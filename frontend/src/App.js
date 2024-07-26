@@ -24,7 +24,7 @@ function App() {
         </Route>
 
         {/* Define a customer route as an example */}
-        <Route path="customer" element={<PrivateRoute roles={[]} />}>
+        <Route path="customer" element={<PrivateRoute roles={""} />}>
           <Route path="checkout" element={<Checkout />} />
         </Route>
       </Route>

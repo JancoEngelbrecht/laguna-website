@@ -89,11 +89,10 @@
     - Save all image Elements for use (NEXT)
     - Implement Design with Tailwind 
 
-- Submit Order Function. 
+- Submit Order Function. (DONE)
     - Create From to capture Customer Details (Can be a popup when the customer click the button)
     - Set up the backend API call
 
-!!!!!!! Why can a Customer access localhost:3000/user ??? !!!!!!!
 
 - Look into Application Testing an Best Practices before you go live
 
