@@ -20,7 +20,7 @@ const PaymentModal = ({ isOpen, onRequestClose, total, handlePayment }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full max-h-[80vh] overflow-y-auto">
-        <h2 className="text-2xl font-bold mb-4">Payment Details</h2>
+        <h2 className="text-2xl font-bold mb-4">Your Order Details</h2>
         <form onSubmit={handlePayment}>
           <div className="mb-4">
             <label className="block mb-2 text-sm font-medium text-gray-700">First Name</label>
@@ -79,9 +79,9 @@ const PaymentModal = ({ isOpen, onRequestClose, total, handlePayment }) => {
           <div className="flex justify-end gap-2">
             <button
               type="submit"
-              className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+              className="bg-green-700 text-white py-2 px-4 rounded hover:bg-gray-600"
             >
-              Pay Now
+              Submit
             </button>
             <button
               type="button"

@@ -12,28 +12,28 @@ function Product({ product, addToBasket }) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
+    <div className="bg-white rounded-lg shadow-md p-6 flex flex-col h-full">
       <img src={image} alt={name} className="w-full h-64 object-cover rounded" />
-      <h2 className="text-xl font-semibold mb-2">{name}</h2>
+      <h2 className="text-xl font-semibold mt-2 mb-2">{name}</h2>
       <p className="text-gray-600">R {parseFloat(price).toFixed(2)}</p>
       <p className="text-gray-600">{descript}</p>
-
-
-      <div className="flex items-center mt-4">
-        <input
-          type="number"
-          min="1"
-          value={productQty}
-          onChange={(e) => setProductQty(parseInt(e.target.value))}
-          className="mr-4 w-16 p-2 border rounded"
-        />
-      </div> 
-
-      <div className="flex items-center mt-4">
+      
+      <div className="flex-grow"></div> {/* This pushes content to the bottom */}
+      
+      <div className="flex flex-col mt-4">
+        {isAuthenticated && (
+          <input
+            type="number"
+            min="1"
+            value={productQty}
+            onChange={(e) => setProductQty(parseInt(e.target.value, 10))}
+            className="w-16 p-2 border rounded mb-4"
+          />
+        )}
         {isAuthenticated ? (
           <AddToBasketBtn onAddClick={handleAdd} />
         ) : (
-          <p className="text-red-500"></p> // ADD TEXT HERE IF YOU WANT TO DISPLAY A MESSAGE
+          <p className="text-red-500">Please log in to add items to your basket.</p>
         )}
       </div>
     </div>

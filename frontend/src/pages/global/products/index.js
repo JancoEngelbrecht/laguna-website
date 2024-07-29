@@ -27,7 +27,7 @@ function Products({ userId }) {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-semibold mb-4">Our Meat Products</h1>
+      <h1 className="text-3xl font-semibold mb-4">Laguna's Meat Products</h1>
       <ProductList products={products} loading={loading} userId={userId} />
     </div>
   );

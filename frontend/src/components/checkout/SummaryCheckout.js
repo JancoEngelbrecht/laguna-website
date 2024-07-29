@@ -54,21 +54,21 @@ const SummaryCheckout = ({ products, vatRate }) => {
       <h2 className="text-2xl font-bold mb-4">Checkout</h2>
       <div className="flex justify-between mb-2">
         <span>Subtotal:</span>
-        <span>R{subtotal.toFixed(2)}</span>
+        <span>R {subtotal.toFixed(2)}</span>
       </div>
       <div className="flex justify-between mb-2">
         <span>VAT ({(vatRate * 100).toFixed(2)}%):</span>
-        <span>R{vat.toFixed(2)}</span>
+        <span>R {vat.toFixed(2)}</span>
       </div>
       <div className="flex justify-between font-bold text-lg mb-2">
         <span>Total:</span>
         <span>R{total.toFixed(2)}</span>
       </div>
       <button
-        className="bg-blue-500 text-white py-2 px-4 rounded"
+        className="bg-gray-500  hover:bg-black text-white py-2 px-4 rounded"
         onClick={() => setModalIsOpen(true)}
       >
-        Proceed to Payment
+        Submit Order
       </button>
 
       <PaymentModal

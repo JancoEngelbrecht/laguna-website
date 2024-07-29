@@ -41,9 +41,12 @@ const Checkout = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-semibold mb-4">Checkout</h1>
-      <div className="flex">
-        <div className="w-3/4 mr-4">
+      <h1 className="text-3xl font-semibold mb-4">Your Basket:</h1>
+      <div className="lg:hidden mb-4">
+        <SummaryCheckout products={products} vatRate={0.2} />
+      </div>
+      <div className="flex flex-col lg:flex-row">
+        <div className="w-full lg:w-3/4 lg:mr-4 mb-4 lg:mb-0">
           <BasketList
             userId={user.sub} // Pass user.sub as userId
             products={products}
@@ -52,7 +55,7 @@ const Checkout = () => {
             handleProductUpdate={handleProductUpdate}
           />
         </div>
-        <div className="w-1/4">
+        <div className="hidden lg:block w-full lg:w-1/4">
           <SummaryCheckout products={products} vatRate={0.2} />
         </div>
       </div>

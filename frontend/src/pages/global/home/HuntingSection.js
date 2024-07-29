@@ -19,7 +19,7 @@ const HuntingSection = () => {
         <div className="container max-w-md text-white p-8 z-10">
           <h2 className="text-3xl md:text-5xl font-bold tracking-wide">FOR HUNTERS</h2>
           <p className="mt-4 text-lg md:text-2xl text-justify leading-normal">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          At Laguna, we offer specialized processing services for hunters, ensuring your game meat is cleaned, cut, and packaged to your exact specifications. Our skilled team handles each order with precision and care, delivering top-quality results tailored to your preferences. For a seamless experience, please reach out to us via our Contact Us page or give us a call to discuss your needs and schedule our services.
           </p>
         </div>
       </div>

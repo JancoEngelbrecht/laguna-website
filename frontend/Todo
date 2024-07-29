@@ -84,29 +84,28 @@
             - Product Delete (DONE)
             - Product Edit (DONE)
 
-- Update the UX Design of you Application to make it more eye catching. 
+13. Update the UX Design of you Application to make it more eye catching. 
     - PowerPoint Reference (DONE)
     - Save all image Elements for use (NEXT)
     - Implement Design with Tailwind 
 
-- Submit Order Function. (DONE)
+14. Submit Order Function. (DONE)
     - Create From to capture Customer Details (Can be a popup when the customer click the button)
     - Set up the backend API call
 
 
-- Look into Application Testing an Best Practices before you go live
+15. Look into Application Testing an Best Practices before you go live
+    - Send Email to Owner when contact us is used. - 
+    - Clean up the code
 
 - Update and Fix all dependencies
 
-- Add a Out of Stock Button in the UserSettings. Button should Display Out-of-Stock Text.
-
-- Gallary for Company Photos
+- Create profiles for client
+    - mongoDB
+    - Auth0
+    - SendGrid
 
 - Production the Application 
-
-
-
-
 
 
 - Create PayGate (In-Progress)
@@ -117,3 +116,20 @@
     - Update Basket and Inventory
     - Security and Validations
     - Testing
+
+
+
+    Forward Fixes: 
+
+    1. Make the Description input fuly readable for the owner
+    2. Add a field for product PN for owner. 
+    3. Add filter for Products that customer can use. 
+    4. Add a option to upload a excel file with all the information the product information that needs to be updated for owner. This is to help with price updates
+    5. When you hover over a product picture it zooms to view the full picture. 
+    6. Clear Basket Button
+    7. Performance of the pictures on the Homepage should improve. 
+    8. Contact Us should also send a email to a customerservice email. 
+    9. Add a Out of Stock Button in the UserSettings. Button should Display Out-of-Stock Text.
+    10. Gallary for Company Photos
+    11. Save Customer Order Data
+    12. 

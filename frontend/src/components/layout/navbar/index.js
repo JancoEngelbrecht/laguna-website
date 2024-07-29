@@ -25,9 +25,11 @@ const Navbar = () => {
     <div className="py-4 px-6 bg-white text-black relative z-50">
       <div className="flex items-center justify-between">
         {/* Small screen logo */}
+        {isHomePage && (
         <div className="top-16 absolute flex-shrink-0 sm:hidden">
           <img src={laguna} className="w-36 h-auto"></img>
         </div>
+        )}
         {/* Home page logo for larger screens */}
         {isHomePage && (
           <div className="flex-shrink-0 mr-6 hidden sm:block">
