@@ -94,8 +94,16 @@
     - Set up the backend API call
 
 
-15. Look into Application Testing an Best Practices before you go live
-    - Send Email to Owner when contact us is used. - 
+15. Send Email to Owner when contact us is used. (DONE)
+        - Add Phone Num to contact from (Done)
+        - Update MongoSchema (Done)
+        - Update the API (Done)
+        - Test API (Done)
+        - Update the contactus sendgrid API (Done)
+        - Update the frontend to call API (Done)
+        - Test API (Done)
+
+16. Look into Application Testing an Best Practices before you go live (NEXT)
     - Clean up the code
 
 - Update and Fix all dependencies
