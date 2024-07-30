@@ -103,10 +103,26 @@
         - Update the frontend to call API (Done)
         - Test API (Done)
 
-16. Look into Application Testing an Best Practices before you go live (NEXT)
-    - Clean up the code
+16. Update and Fix all dependencies (DONE)
 
-- Update and Fix all dependencies
+17. Implement Data Privacy 
+    - Consent Form
+    - Save user consent to DB
+    - When Consent is revoked, then delete user personal information. 
+
+17. Look into Application Testing an Best Practices before you go live (NEXT)
+    - Version Control best practices
+        - Commit Descriptions
+        - When to commit
+    - Resize Images for performance
+        - HomePage
+        - Product Images
+    - Break code up into smaller pieces
+    - Ask chatGPT for code improvements
+    - Security Improvements
+    - Update the Auth0 signin popup. 
+
+
 
 - Create profiles for client
     - mongoDB
