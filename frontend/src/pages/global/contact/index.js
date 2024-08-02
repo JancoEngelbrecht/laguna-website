@@ -1,14 +1,15 @@
 import React from 'react';
-import mainCow from "../../../assets/images/maincow.jpg";
+import ContactUsImage from "../../../assets/images/ContactUsImage.jpg";
 import ContactForm from '../../../components/common/global/ContactForm';
 import LocationMap from '../../../components/common/global/LocationMap';
 
 const Contact = () => {
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: `url(${mainCow})` }}>
+    <div className="relative min-h-screen flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: `url(${ContactUsImage})` }}>
       <div className="absolute inset-0 bg-black opacity-50"></div> {/* Dark overlay for better contrast */}
       <div className="relative z-10 bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl overflow-hidden">
         <div className="flex flex-col md:flex-row">
+
           {/* Contact Form */}
           <div className="w-full md:w-1/2 p-4">
             <ContactForm />

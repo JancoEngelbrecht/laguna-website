@@ -10,7 +10,6 @@ const UserNav = () => {
           <div className="text-xl font-bold">Logo</div> 
           <div className="flex space-x-4">
             <NavLink to="user" className="hover:text-gray-300">Product Management</NavLink>
-            <NavLink to="user/stocklist" className="hover:text-gray-300">Stocklist</NavLink>
             <LogoutButton />
           </div>
         </div>

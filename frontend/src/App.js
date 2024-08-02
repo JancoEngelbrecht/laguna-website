@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/global/home';
 import Layout from "./components/layout";
-import Stocklist from './pages/private/stocklist';
 import PrivateRoute from './routes/PrivateRoutes';
 import ProductManagement from './pages/private/productmanagement';
 import Contact from './pages/global/contact';
@@ -20,7 +19,6 @@ function App() {
         {/* Define roles for the user routes */}
         <Route path="user" element={<PrivateRoute roles={['Personnel']} />}>
           <Route index element={<ProductManagement />} />
-          <Route path="stocklist" element={<Stocklist />} />
         </Route>
 
         {/* Define a customer route as an example */}

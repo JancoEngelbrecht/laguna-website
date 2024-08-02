@@ -3,32 +3,45 @@ import ProductList from '../../../components/common/global/product/ProductList';
 import axios from 'axios';
 
 function Products({ userId }) {
+  
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true); // Set loading to true initially
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Fetch Company Product Data
+  // useEffect to fetch products data when the component mounts
   useEffect(() => {
-    async function fetchProducts() {
+    const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/products');
+        // Make an API call to get products
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/products`);
+        // Ensure that the price is numeric
         const productsWithNumericPrices = response.data.map(product => ({
           ...product,
-          price: Number(product.price), // Convert price to number
+          price: Number(product.price),
         }));
+
         setProducts(productsWithNumericPrices);
-        setLoading(false);
       } catch (error) {
-        console.log(error.response);
+        setError(error);
+      } finally {
         setLoading(false);
       }
-    }
+    };
+
+    // Call the fetchProducts function so that it runs when the component mounts
     fetchProducts();
-  }, []);
+  }, []); // Empty dependency array means this effect runs once on mount
 
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-semibold mb-4">Laguna's Meat Products</h1>
-      <ProductList products={products} loading={loading} userId={userId} />
+      {/* Render an error message if there's an error */}
+      {error ? (
+        <div className="text-red-500">Failed to load products. Please try again later.</div>
+      ) : (
+        // Render the ProductList component with fetched products and loading state
+        <ProductList products={products} loading={loading} userId={userId} />
+      )}
     </div>
   );
 }
