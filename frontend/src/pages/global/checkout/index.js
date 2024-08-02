@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import {useUser} from '../../../services/UserProvider'
+import axios from 'axios';
+
 import BasketList from '../../../components/checkout/BasketList';
 import SummaryCheckout from '../../../components/checkout/SummaryCheckout';
-import axios from 'axios';
-import {useUser} from '../../../services/UserProvider'
+
+
 
 const Checkout = () => {
   // State variables to manage products, loading state, and user authentication

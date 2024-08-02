@@ -1,4 +1,5 @@
 import React from 'react';
+
 import HangMeat from '../../../assets/images/HangMeat.png';
 
 const HuntingSection = () => {

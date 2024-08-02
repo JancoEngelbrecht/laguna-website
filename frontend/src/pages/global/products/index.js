@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import ProductList from '../../../components/common/global/product/ProductList';
 import axios from 'axios';
+
+import ProductList from '../../../components/common/global/product/ProductList';
 
 function Products({ userId }) {
   

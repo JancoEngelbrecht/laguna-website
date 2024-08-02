@@ -1,4 +1,5 @@
 import React from 'react';
+
 import BBQSteak from '../../../assets/images/BBQSteak.png';
 import BBQ from '../../../assets/images/BBQ.png';
 import Smoke from '../../../assets/images/Smoke.png';

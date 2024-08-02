@@ -1,4 +1,5 @@
 import React from 'react';
+
 import coverImage from '../../../assets/images/Image_Cover.jpg';
 
 const HeroSection = ({ user }) => {
