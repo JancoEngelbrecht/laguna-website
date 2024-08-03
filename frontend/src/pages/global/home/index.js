@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
+import {useUser} from '../../../services/UserProvider'
 
 import HeroSection from './HeroSection';
 import SteakSection from './SteakSection';
@@ -9,7 +9,7 @@ import ScrollToTop from './ScrollToTop';
 import useScrollEffects from './useScrollEffects';
 
 const Home = () => {
-  const { user } = useAuth0();
+  const { user } = useUser();
 
   useScrollEffects();
 

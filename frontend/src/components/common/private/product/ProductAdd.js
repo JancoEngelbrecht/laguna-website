@@ -50,7 +50,7 @@ const ProductAdd = ({ onAdd, setLoading }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:4000/products', newProduct);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/products`, newProduct);
       const addedProduct = response.data; // Get the newly created product from the response
       setError(null);
       onAdd(addedProduct); 

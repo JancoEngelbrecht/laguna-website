@@ -48,8 +48,8 @@ const ContactForm = () => {
     }
 
     try {
-      const response1 = await axios.post('http://localhost:4000/contact', formData);
-      const response2 = await axios.post('http://localhost:4000/api/contactus', formData);
+      const response1 = await axios.post(`${process.env.REACT_APP_API_URL}/contact`, formData);
+      const response2 = await axios.post(`${process.env.REACT_APP_API_URL}/api/contactus`, formData);
 
       if (response1.status === 200 && response2.status === 200) {
         console.log('Form submitted successfully');

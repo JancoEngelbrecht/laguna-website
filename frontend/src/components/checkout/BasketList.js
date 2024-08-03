@@ -7,7 +7,7 @@ const BasketList = ({ userId, products, loading, handleProductDelete, handleProd
   // Delete Data from the DB
   const handleDeleteClick = async (product) => {
     try {
-      await axios.delete(`http://localhost:4000/user/${userId}/products/${product._id}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/user/${userId}/products/${product._id}`);
       handleProductDelete(product);
     } catch (error) {
       console.error('Error deleting product from basket:', error);
@@ -17,7 +17,7 @@ const BasketList = ({ userId, products, loading, handleProductDelete, handleProd
   // Update Data in the DB
   const handleUpdateClick = async (productId, updatedProductData) => {
     try {
-      await axios.put(`http://localhost:4000/user/${userId}/products/${productId}`, updatedProductData);
+      await axios.put(`${process.env.REACT_APP_API_URL}/user/${userId}/products/${productId}`, updatedProductData);
       handleProductUpdate(productId, updatedProductData);
     } catch (error) {
       console.error('Error updating product in basket:', error);

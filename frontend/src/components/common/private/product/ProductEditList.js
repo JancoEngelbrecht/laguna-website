@@ -7,17 +7,17 @@ const ProductEditList = ({ products, loading, error, onDelete }) => {
   const handleUpdate = useCallback(async (updatedProduct) => {
     try {
       // Update the product in the products collection
-      await axios.put(`http://localhost:4000/products/${updatedProduct._id}`, updatedProduct);
+      await axios.put(`${process.env.REACT_APP_API_URL}/products/${updatedProduct._id}`, updatedProduct);
   
       // Fetch all users who have the product in their baskets
-      const response = await axios.get(`http://localhost:4000/users/basketProducts/${updatedProduct._id}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/basketProducts/${updatedProduct._id}`);
       const users = response.data;
 
       // Update the product in all user baskets
       for (const user of users) {
         const basketItems = user.products.filter(item => item.identity === updatedProduct._id);
         for (const basketItem of basketItems) {
-          await axios.put(`http://localhost:4000/user/${user.auth0Id}/products/${basketItem._id}`, {
+          await axios.put(`${process.env.REACT_APP_API_URL}/user/${user.auth0Id}/products/${basketItem._id}`, {
             name: updatedProduct.name,
             price: updatedProduct.price,
             image: updatedProduct.image,
@@ -36,10 +36,10 @@ const ProductEditList = ({ products, loading, error, onDelete }) => {
   const handleProductDelete = useCallback(async (productId) => {
     try {
       // Delete the product from the products collection
-      await axios.delete(`http://localhost:4000/products/${productId}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/products/${productId}`);
 
       // Fetch all users who have the product in their baskets
-      const response = await axios.get(`http://localhost:4000/users/basketProducts/${productId}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/basketProducts/${productId}`);
       const users = response.data;
 
      // Remove the product from all user baskets
@@ -50,7 +50,7 @@ const ProductEditList = ({ products, loading, error, onDelete }) => {
         
         for (const basketItem of basketItems) {
           console.log(`Deleting basket product ${basketItem._id} from user ${user.auth0Id}'s basket`);
-          await axios.delete(`http://localhost:4000/user/${user.auth0Id}/products/${basketItem._id}`);
+          await axios.delete(`${process.env.REACT_APP_API_URL}/user/${user.auth0Id}/products/${basketItem._id}`);
           console.log(`Deleted product ${basketItem._id} from user ${user.auth0Id}'s basket`);
         }
       } else {

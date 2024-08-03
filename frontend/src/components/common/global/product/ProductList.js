@@ -18,7 +18,7 @@ function ProductList({ products, loading}) {
   
     
     try {
-      await axios.post(`http://localhost:4000/user/${user.sub}/products`, productToAdd);
+      await axios.post(`${process.env.REACT_APP_API_URL}/user/${user.sub}/products`, productToAdd);
       alert("Product added successfully!");
     } catch (error) {
       console.error("Error adding product to user basket:", error);
