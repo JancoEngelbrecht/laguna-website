@@ -2,6 +2,7 @@ import React from 'react';
 import Product from './Product';
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
+import Spinner from '../Spinner'
 
 function ProductList({ products, loading}) {
   const { user } = useAuth0();
@@ -26,7 +27,7 @@ function ProductList({ products, loading}) {
     }
   };
 
-  if (loading) return <div className="text-center py-10">Loading...</div>;
+  if (loading) return <div className="text-center py-10"><Spinner /></div>;
 
   return (
     <div>

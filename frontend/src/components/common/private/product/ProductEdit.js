@@ -79,11 +79,11 @@ const ProductEdit = ({ product, onUpdate, onDelete }) => {
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">Description</label>
-          <input
-            type="text"
+          <textarea
             name="descript"
             value={localProduct.descript}
             onChange={handleChange}
+            rows="5" // Adjust this number as needed
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>

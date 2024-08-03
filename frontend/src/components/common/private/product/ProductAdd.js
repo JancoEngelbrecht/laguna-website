@@ -90,11 +90,11 @@ const ProductAdd = ({ onAdd, setLoading }) => {
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">Description</label>
-          <input
-            type="text"
+          <textarea
             name="descript"
             value={newProduct.descript}
             onChange={handleChange}
+            rows="5" // You can adjust this number based on how large you want the textarea to be
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
