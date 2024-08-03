@@ -1,5 +1,5 @@
 import React from "react";
-import companylogo from "../../../assets/images/laguna_logo.png";
+import LogoImage from "../logo/logoImage";
 
 const Footer = () => {
   return (
@@ -7,12 +7,7 @@ const Footer = () => {
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4">
         {/* Logo Section */}
         <div className="flex items-center mb-4 md:mb-0">
-          <img
-            src={companylogo}
-            alt="Laguna Slaghuis logo"
-            className="h-52"
-            // Add appropriate alternative text
-          />
+          <LogoImage className="h-52"/>
         </div>
         {/* Open Hours Section */}
         <div className="text-center mb-4 md:mb-0">

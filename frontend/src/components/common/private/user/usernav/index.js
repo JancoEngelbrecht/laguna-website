@@ -5,7 +5,7 @@ import LogoutButton from "../../../global/LogoutButton";
 
 const UserNav = () => {
     return (
-      <div className="py-4 px-6 bg-gray-800 text-white relative z-50">
+      <div className="py-4 px-6 bg-white text-black relative z-50">
         <div className="flex justify-between items-center">
           <div className="text-xl font-bold">Logo</div> 
           <div className="flex space-x-4">

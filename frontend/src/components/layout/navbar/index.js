@@ -3,9 +3,9 @@ import { useLocation } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import Logo from "../logo";
+import LogoBanner from "../logo/logoBanner";
 import DropdownMenu from "./dropdown/index";
-import laguna from "./../../../assets/images/LagunaLogo_invert.png"
+import LogoImageInvert from "../logo/logoImageInvert";
 
 const Navbar = () => {
   // State to manage the dropdown menu's open/closed state
@@ -35,7 +35,7 @@ const Navbar = () => {
         {isHomePage && (
           <div className="top-16 absolute flex-shrink-0 sm:hidden">
             {/* Image logo for small screens */}
-            <img src={laguna} className="w-36 h-auto" alt="Laguna Logo" />
+            <LogoImageInvert />
           </div>
         )}
         
@@ -43,7 +43,7 @@ const Navbar = () => {
         {isHomePage && (
           <div className="flex-shrink-0 mr-6 hidden sm:block">
             {/* Component logo for larger screens */}
-            <Logo />
+            <LogoBanner />
           </div>
         )}
         

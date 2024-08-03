@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import companylogo from "../../../assets/images/laguna_logo.png";
+import LogoImage from './logoImage';
 
 const Logo = () => {
     // State to control the style of the logo (opacity and translation)
@@ -45,12 +45,7 @@ const Logo = () => {
                 transition: 'opacity 0.3s ease-out, transform 0.3s ease' // Smooth transitions
             }}
         >
-            <img
-                src={companylogo}
-                alt="Company Logo"
-                // Styling for the logo image
-                className="max-w-full max-h-[80%] object-contain"
-            />
+            <LogoImage />
             
             <div className="text-gray-800 text-left text-lg font-light mt-2 pl-10 pr-10 fixed bottom-20">
                 {/* Laguna Butchery and contact details section */}
