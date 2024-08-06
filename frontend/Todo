@@ -105,23 +105,21 @@
 
 16. Update and Fix all dependencies (DONE)
 
-17. Implement Data Privacy 
-    - Consent Form
-    - Save user consent to DB
-    - When Consent is revoked, then delete user personal information. 
-
 17. Look into Application Testing an Best Practices before you go live (NEXT)
     - Version Control best practices
         - Commit Descriptions
         - When to commit
-    - Resize Images for performance
+    - Resize Images for performance (DONE)
         - HomePage
         - Product Images
-    - Break code up into smaller pieces
-    - Ask chatGPT for code improvements
-    - Security Improvements
-    - Update the Auth0 signin popup. 
+    - Break code up into smaller pieces (DONE)
+    - Ask chatGPT for code improvements (DONE)
+    - Update the Auth0 signin popup. (DONE)
 
+18. Implement Data Privacy 
+    - Consent Form (DONE)
+    - Save user consent to DB (DONE)
+    - Security Improvements 
 
 
 - Create profiles for client
@@ -132,6 +130,26 @@
 - Production the Application 
 
 
+
+
+
+
+    Forward Fixes: 
+
+    1. Make the Description input fuly readable for the owner (DONE)
+    2. Add a field for product PN for owner. 
+    3. Add filter for Products that customer can use. 
+    4. Add a option to upload a excel file with all the information the product information that needs to be updated for owner. This is to help with price updates
+    5. When you hover over a product picture it zooms to view the full picture. 
+    6. Clear Basket Button
+    7. Performance of the pictures on the Homepage should improve. (DONE) 
+    8. Contact Us should also send a email to a customerservice email. (DONE)
+    9. Add a Out of Stock Button in the UserSettings. Button should Display Out-of-Stock Text.
+    10. Gallary for Company Photos
+    11. Save Customer Order Data
+
+
+
 - Create PayGate (In-Progress)
     - When Pay the payment is approved, the Product Basket should clear in DB and the Data should be added to a UserProductHistoryTable.
     - Create a Paygate Component
@@ -140,20 +158,3 @@
     - Update Basket and Inventory
     - Security and Validations
     - Testing
-
-
-
-    Forward Fixes: 
-
-    1. Make the Description input fuly readable for the owner
-    2. Add a field for product PN for owner. 
-    3. Add filter for Products that customer can use. 
-    4. Add a option to upload a excel file with all the information the product information that needs to be updated for owner. This is to help with price updates
-    5. When you hover over a product picture it zooms to view the full picture. 
-    6. Clear Basket Button
-    7. Performance of the pictures on the Homepage should improve. 
-    8. Contact Us should also send a email to a customerservice email. 
-    9. Add a Out of Stock Button in the UserSettings. Button should Display Out-of-Stock Text.
-    10. Gallary for Company Photos
-    11. Save Customer Order Data
-    12. 

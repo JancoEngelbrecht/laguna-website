@@ -1,6 +1,8 @@
 import React, { useCallback } from 'react';
-import ProductEdit from './ProductEdit';
 import axios from 'axios';
+
+import ProductEdit from './ProductEdit';
+import Spinner from '../../../common/global/Spinner'
 
 const ProductEditList = ({ products, loading, error, onDelete }) => {
   
@@ -65,7 +67,7 @@ const ProductEditList = ({ products, loading, error, onDelete }) => {
     }
   }, [onDelete]);
 
-  if (loading) return <div className="text-center py-10">Loading...</div>;
+  if (loading) return <div className="text-center py-10"><Spinner /></div>;
   if (error) return <div className="text-center text-red-500 py-10">{error}</div>;
 
   return (

@@ -38,7 +38,7 @@ const Logo = () => {
     return (
         <div
             // Styling for the logo container
-            className={`fixed top-0 left-[60px] w-[300px] h-[700px] bg-white border-b border-gray-300 shadow-logo transition-opacity duration-500 z-logo`}
+            className={`fixed top-0 left-[60px] w-[300px] h-[650px] bg-white border-b border-gray-300 shadow-logo transition-opacity duration-500 z-logo`}
             style={{
                 opacity: style.opacity, // Apply calculated opacity
                 transform: style.transform, // Apply calculated translation
@@ -47,7 +47,7 @@ const Logo = () => {
         >
             <LogoImage />
             
-            <div className="text-gray-800 text-left text-lg font-light mt-2 pl-10 pr-10 fixed bottom-20">
+            <div className="text-gray-800 text-left text-lg font-light mt-2 pl-10 pr-10 fixed bottom-10">
                 {/* Laguna Butchery and contact details section */}
                 <div className="">
                     <div className="mb-4">

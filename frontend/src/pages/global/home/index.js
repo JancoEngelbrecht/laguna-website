@@ -7,6 +7,7 @@ import HuntingSection from './HuntingSection';
 import BBQSteakSection from './BBQSteakSection';
 import ScrollToTop from './ScrollToTop';
 import useScrollEffects from './useScrollEffects';
+import PrivacyConsentBanner from '../../../components/common/global/PrivacyConsentBanner';
 
 const Home = () => {
   const { user } = useUser();
@@ -20,6 +21,7 @@ const Home = () => {
       <HuntingSection />
       <BBQSteakSection />
       <ScrollToTop />
+      <PrivacyConsentBanner />
     </div>
   );
 };

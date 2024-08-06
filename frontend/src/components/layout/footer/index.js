@@ -1,21 +1,22 @@
 import React from "react";
+import { NavLink } from 'react-router-dom';
 import LogoImage from "../logo/logoImage";
 
 const Footer = () => {
   return (
     <footer className="bg-white text-black py-4 relative w-full bottom-0 z-50">
-      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4">
+      <div className="container mx-auto flex flex-col md:flex-row items-top justify-between px-24">
         {/* Logo Section */}
         <div className="flex items-center mb-4 md:mb-0">
           <LogoImage className="w-auto h-52"/>
         </div>
         {/* Open Hours Section */}
-        <div className="text-center mb-4 md:mb-0">
+        <div className="mb-4 mt-12 md:mb-0 ">
           <p className="text-lg font-bold">Open Hours</p>
           <p className="text-sm">Mon to Fri: 08:00 - 17:00</p>
         </div>
         {/* Address Section */}
-        <div className="text-center mb-4 md:mb-0">
+        <div className=" mb-4 mt-12 md:mb-0">
           <p className="text-lg font-bold">Address</p>
           <a
             className="text-sm"
@@ -28,7 +29,7 @@ const Footer = () => {
           </a>
         </div>
         {/* Contact Section */}
-        <div className="text-center">
+        <div className="mt-12">
           <p className="text-lg font-bold">Contact</p>
           <a
             className="text-sm"
@@ -36,6 +37,16 @@ const Footer = () => {
           >
             +27 63 635 8992
           </a>
+        </div>
+        {/* Open Hours Section */}
+        <div className="mb-4 mt-12 md:mb-0">
+          <p className="text-lg font-bold">Legal</p>
+          <p className="text-sm">
+            <NavLink
+              to="/privacy"
+              className="text-sm">
+              Privacy Policy
+            </NavLink></p>
         </div>
       </div>
     </footer>

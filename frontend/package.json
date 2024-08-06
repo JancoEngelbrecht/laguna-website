@@ -13,8 +13,8 @@
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
     "animate.css": "^4.1.1",
-    "autoprefixer": "^10.4.19",
-    "axios": "^1.7.2",
+    "autoprefixer": "^10.4.20",
+    "axios": "^1.7.3",
     "cors": "^2.8.5",
     "dompurify": "^3.1.6",
     "dotenv": "^16.4.5",
@@ -23,7 +23,7 @@
     "helmet": "^7.1.0",
     "loaders.css": "^0.1.2",
     "mongodb": "^6.8.0",
-    "mongoose": "^8.5.1",
+    "mongoose": "^8.5.2",
     "path-browserify": "^1.0.1",
     "postcss-cli": "^11.0.0",
     "react": "^18.3.1",
@@ -33,7 +33,7 @@
     "react-leaflet": "^4.2.1",
     "react-loaders": "^3.0.1",
     "react-modal": "^3.16.1",
-    "react-router-dom": "^6.25.1",
+    "react-router-dom": "^6.26.0",
     "react-scripts": "^5.0.1",
     "sass": "^1.77.8",
     "web-vitals": "^4.2.2"
@@ -65,7 +65,7 @@
   },
   "devDependencies": {
     "css-loader": "^7.1.2",
-    "postcss": "^8.4.40",
+    "postcss": "^8.4.41",
     "postcss-loader": "^8.1.1",
     "style-loader": "^4.0.0",
     "tailwindcss": "^3.4.7"

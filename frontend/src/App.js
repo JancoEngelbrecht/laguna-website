@@ -6,6 +6,7 @@ import ProductManagement from './pages/private/productmanagement';
 import Contact from './pages/global/contact';
 import Products from './pages/global/products';
 import Checkout from './pages/global/checkout';
+import PrivacyPolicy from './pages/global/privacy';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="privacy" element={<PrivacyPolicy />} />
         <Route path="products" element={<Products />} />
         
 
@@ -29,5 +31,6 @@ function App() {
     </Routes>
   );
 }
+
 
 export default App;
