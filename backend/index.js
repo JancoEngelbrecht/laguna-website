@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path');
 require('dotenv/config'); // Load environment variables
 
 const app = express();
@@ -23,6 +24,14 @@ app.use(cors(corsOptions));
 // Use the main router index
 const routes = require('./routes'); 
 app.use('/', routes);
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+// Handle React routing, return all requests to React app
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+});
 
 // Connect to MongoDB
 mongoose.connect(process.env.DB_URI, {
