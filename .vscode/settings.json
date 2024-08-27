@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/fc00ccec-a797-403b-84ad-2d3d822ae9a9/resourceGroups/Lagunabutchery_group/providers/Microsoft.Web/sites/Lagunabutchery",
+    "appService.deploySubpath": "backend"
+}
