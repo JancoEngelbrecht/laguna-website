@@ -7,7 +7,7 @@ const HeroSection = ({ user }) => {
     <div className="relative w-full h-screen overflow-hidden">
       <img
         src={coverImage}
-        alt="A stunning cover image showcasing meats perfection"
+        alt="A stunning cover showcasing meats perfection"
         className="absolute inset-0 object-cover w-full h-full"
       />
       <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col md:grid md:grid-cols-2 items-center md:items-start justify-center md:justify-start px-4">

@@ -7,13 +7,13 @@ const HuntingSection = () => {
     <section id="hunting-section" className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-white p-4 md:p-8">
       <div className="order-1 md:order-2 relative flex justify-center items-center">
         <div className="swing w-2/3 md:w-2/3 h-auto md:h-auto relative z-40">
-          <img src={HangMeat} className="" />
+          <img src={HangMeat} className="" alt='' />
         </div>
         <div className="swing w-2/3 md:w-2/3 h-auto md:h-auto absolute z-30">
-          <img src={HangMeat} className="" />
+          <img src={HangMeat} className="" alt='' />
         </div>
         <div className="swing w-2/3 md:w-2/3 h-auto md:h-auto absolute z-20">
-          <img src={HangMeat} className="" />
+          <img src={HangMeat} className="" alt=''/>
         </div>
       </div>
       <div className="order-2 md:order-1 relative bg-black flex flex-col justify-center items-center p-4 md:p-8">
