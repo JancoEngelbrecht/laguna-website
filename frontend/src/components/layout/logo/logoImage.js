@@ -1,5 +1,5 @@
 import React from "react";
-import companylogo from "../../../assets/images/LagunaLogo_invert";
+import companylogo from "../../../assets/images/LagunaLogo_invert.png";
 
 const LogoImage = ({className = 'w-auto h-auto'}) => {
 
