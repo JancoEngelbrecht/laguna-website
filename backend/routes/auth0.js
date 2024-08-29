@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const { getManagementToken } = require('./auth0TokenService'); 
 
 const router = express.Router();
 
@@ -12,8 +13,6 @@ const fetchUserIdFromToken = async (token) => {
   });
   return response.data.sub;
 };
-
-
 
 // Middleware function to authenticate user
 const authenticateUser = async (req, res, next) => {
@@ -39,7 +38,7 @@ const authenticateUser = async (req, res, next) => {
 router.get('/auth0/user_roles', authenticateUser, async (req, res) => {
   try {
     const userId = req.auth.userId; // Get user ID from authenticated request
-    const token = process.env.AUTH0_MGT_TOKEN; // Get the management token
+    const token = await getManagementToken(); // Dynamically get the management token
 
     const rolesOptions = {
       method: 'GET',
