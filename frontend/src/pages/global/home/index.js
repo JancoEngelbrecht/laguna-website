@@ -13,8 +13,9 @@ const Home = () => {
   const { user } = useUser();
 
   useScrollEffects();
-  console.log(process.env.REACT_APP_AUTH_DOMAIN)
-  console.log(process.env.REACT_APP_AUTH_CLIENT_ID)
+
+  console.log(process.env.REACT_APP_AUTH_DOMAIN, "AuthDomain")
+  console.log(process.env.REACT_APP_AUTH_CLIENT_ID, "Client ID")
 
   return (
     <div className="relative overflow-hidden">
