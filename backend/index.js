@@ -20,22 +20,30 @@ const corsOptions = {
 // Use CORS middleware
 app.use(cors(corsOptions));
 
+// Welcome message at root ("/") route
+app.get('/', (req, res) => {
+    res.send('Welcome to Laguna server!');
+});
+
 // Use the main router index
 const routes = require('./routes'); 
 app.use('/', routes);
 
-// Connect to MongoDB
+// Connect to MongoDB (CosmosDB)
 mongoose.connect(process.env.DB_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true,       // If you need to create indexes automatically
+    useFindAndModify: false,    // If you are using findOneAndUpdate or findOneAndDelete
+    ssl: true,                  // Ensure SSL is true for Cosmos DB
+    retryWrites: false          // Disable retryWrites for Cosmos DB
 })
-.then(() => console.log('DB Connected!'))
-.catch((err) => console.log('DB Connection Error:', err));
+.then(() => console.log('Connected to CosmosDB!'))
+.catch((err) => console.log('Connection to CosmosDB failed:', err));
 
 // Start the server
 const port = process.env.PORT || 4000; // Set the port from environment variables or default to 4000
 const server = app.listen(port, () => {
     console.log(`Server is running on ${port}`);
 });
-
 
