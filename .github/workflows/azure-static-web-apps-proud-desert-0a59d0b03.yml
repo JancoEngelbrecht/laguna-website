@@ -72,27 +72,39 @@ jobs:
           name: backend-app
           path: "./backend"
 
-  deploy_backend:
-    runs-on: ubuntu-latest
-    needs: build_backend
-    name: Deploy Backend
+  name: Deploy Backend
 
-    steps:
-      - name: Download backend artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: backend-app
-      
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4D1451B762A34ACF978257DD0530D49C }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_94B8BE88EC8A4EE69616A5D6BE34A139 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_9758212CADDF4E4496BC302D2D9EB1A3 }}
+  on:
+    push:
+      branches:
+        - main
 
-      - name: Deploy backend to Azure Web App
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: 'Lagunabutchery'
-          slot-name: 'Production'
-          package: './backend'
+  jobs:
+    deploy_backend:
+      runs-on: ubuntu-latest
+      needs: build_backend
+      name: Deploy Backend
+
+      permissions:
+        id-token: ${{ secrets.GITHUB_TOKEN }}
+        contents: read
+
+      steps:
+        - name: Download backend artifact
+          uses: actions/download-artifact@v4
+          with:
+            name: backend-app
+
+        - name: Login to Azure
+          uses: azure/login@v2
+          with:
+            client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4D1451B762A34ACF978257DD0530D49C }}
+            tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_94B8BE88EC8A4EE69616A5D6BE34A139 }}
+            subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_9758212CADDF4E4496BC302D2D9EB1A3 }}
+
+        - name: Deploy backend to Azure Web App
+          uses: azure/webapps-deploy@v3
+          with:
+            app-name: 'Lagunabutchery'
+            slot-name: 'Production'
+            package: './backend'
