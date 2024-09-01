@@ -72,14 +72,7 @@ jobs:
           name: backend-app
           path: "./backend"
 
-  name: Deploy Backend
 
-  on:
-    push:
-      branches:
-        - main
-
-  jobs:
     deploy_backend:
       runs-on: ubuntu-latest
       needs: build_backend
