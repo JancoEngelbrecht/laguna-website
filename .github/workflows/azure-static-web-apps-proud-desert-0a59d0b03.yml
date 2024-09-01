@@ -25,10 +25,10 @@ jobs:
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PROUD_DESERT_0A59D0B03 }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for GitHub integrations (i.e., PR comments)
           action: "upload"
           app_location: "./frontend" # App source code path
-          api_location: "" # Api source code path - optional
+          api_location: "" # API source code path - optional
           output_location: "build" # Built app content directory - optional
 
   close_pull_request_job:
@@ -88,9 +88,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4D1451B762A34ACF978257DD0530D49C }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_94B8BE88EC8A4EE69616A5D6BE34A139 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_9758212CADDF4E4496BC302D2D9EB1A3 }}
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
 
       - name: Deploy backend to Azure Web App
         uses: azure/webapps-deploy@v3
