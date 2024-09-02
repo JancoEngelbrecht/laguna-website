@@ -33,8 +33,6 @@ function Products({ userId }) {
     fetchProducts();
   }, []); // Empty dependency array means this effect runs once on mount
 
-  console.log(process.env.REACT_APP_API_URL)
-
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-semibold mb-4">Laguna's Meat Products</h1>
