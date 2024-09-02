@@ -21,7 +21,7 @@ Welcome to the Laguna Butchery website repository. This project serves as the on
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
 - **Authentication**: Auth0
-- **Hosting**: [Your Hosting Provider]
+- **Hosting**: Microsoft Azure
 
 ## Installation
 
