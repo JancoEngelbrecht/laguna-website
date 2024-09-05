@@ -1,6 +1,6 @@
 # Laguna Butchery Website
 
-Welcome to the Laguna Butchery website repository. This project serves as the online platform for Laguna Butchery, showcasing our wide range of products. The website allows users to sign up, log in, browse products, manage their shopping baskets, and submit orders.
+Welcome to the Laguna Butchery website repository. This project serves as the online platform for Laguna Butchery, showcasing our wide range of products. The website allows users to sign up, log in, browse products, manage their shopping baskets, and submit orders. (TEST)
 
 ## Table of Contents
 
