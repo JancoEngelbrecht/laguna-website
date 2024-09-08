@@ -1,6 +1,6 @@
 const express = require('express');
 const schemas = require('../models/schemas');
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');
 
 const router = express.Router();
 
@@ -25,10 +25,10 @@ router.post('/user/:auth0Id/products', async (req, res) => {
     if (!user) {
       user = new schemas.User({
         auth0Id,
-        products: [newProduct] 
+        products: [newProduct], // Add to the user's product list
       });
     } else {
-      user.products.push(newProduct);
+      user.products.push(newProduct); // Append the new product to existing products
     }
 
     await user.save();
@@ -54,7 +54,7 @@ router.get('/user/:auth0Id/products', async (req, res) => {
     const products = user.products.map(product => {
       return {
         ...product.toObject(),
-        price: parseFloat(product.price.toString()).toFixed(2)
+        price: parseFloat(product.price.toString()).toFixed(2) // Convert Decimal128 to float
       };
     });
 
@@ -93,16 +93,16 @@ router.get('/users/basketProducts/:productId', async (req, res) => {
   try {
     const { productId } = req.params;
     const users = await schemas.User.find(
-      { 'products.identity': productId },
-      'auth0Id products'
+      { 'basket.identity': productId }, // Look into the 'basket' field now
+      'auth0Id basket'
     ).lean();
 
-    // Filter the products to only include the ones with the specific productId
+    // Filter the basket items to only include those with the specific productId
     const result = users.map(user => {
-      const filteredProducts = user.products.filter(product => product.identity === productId);
+      const filteredBasket = user.basket.filter(product => product.identity === productId);
       return {
         auth0Id: user.auth0Id,
-        products: filteredProducts
+        basket: filteredBasket
       };
     });
 
@@ -113,7 +113,7 @@ router.get('/users/basketProducts/:productId', async (req, res) => {
   }
 });
 
-// Update a User's Product by Product ID (Update in UserBasket Environment)
+// Update a User's Product by Product ID
 router.put('/user/:auth0Id/products/:productId', async (req, res) => {
   try {
     const { auth0Id, productId } = req.params;
@@ -151,7 +151,7 @@ router.put('/user/:auth0Id/products/:productId', async (req, res) => {
   }
 });
 
-// Delete a User's Product by Product ID (Update in UserBasket Environment)
+// Delete a User's Product by Product ID
 router.delete('/user/:auth0Id/products/:productId', async (req, res) => {
   try {
     const { auth0Id, productId } = req.params;
@@ -162,17 +162,13 @@ router.delete('/user/:auth0Id/products/:productId', async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    const productIndex = user.products.findIndex(product => {
-      console.log(`Comparing ${product._id.toString()} with ${productId}`);
-      return product._id.toString() === productId;
-    });
+    const productIndex = user.products.findIndex(product => product._id.toString() === productId);
  
-    console.log(`Product Index: ${productIndex}`)
     if (productIndex === -1) {
       return res.status(404).json({ error: 'Product not found' });
     }
 
-    user.products.splice(productIndex, 1);
+    user.products.splice(productIndex, 1); // Remove the product
     await user.save();
 
     res.json({ message: 'Product deleted successfully' });
@@ -181,8 +177,5 @@ router.delete('/user/:auth0Id/products/:productId', async (req, res) => {
     res.status(500).json({ error: 'Failed to delete product from user' });
   }
 });
-
-
-
 
 module.exports = router;

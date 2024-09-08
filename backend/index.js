@@ -22,7 +22,7 @@ app.use(cors(corsOptions));
 
 // Welcome message at root ("/") route
 app.get('/', (req, res) => {
-    res.send('Welcome to Laguna server!', process.env.DB_URI);
+    res.send('Welcome to Laguna server!');
 });
 
 // Use the main router index

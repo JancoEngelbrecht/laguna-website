@@ -4,9 +4,9 @@ const sgMail = require('@sendgrid/mail');
 
 const router = express.Router();
 
-// Add contact to the Database
+// Add contact to the Database (with user association)
 router.post('/contact', async (req, res) => {
-  const { name, email, phone, message } = req.body;
+  const { name, email, phone, message, auth0Id } = req.body;
 
   if (!name || !email || !phone || !message) {
     return res.status(400).json({ error: 'All fields are required' });
@@ -14,8 +14,26 @@ router.post('/contact', async (req, res) => {
 
   try {
     const contactData = { name, email, phone, message };
-    const newContact = new schemas.Contact(contactData);
-    const saveContact = await newContact.save();
+    
+    // Check if user exists by auth0Id (if user is authenticated)
+    let user;
+    if (auth0Id) {
+      user = await schemas.User.findOne({ auth0Id });
+    }
+
+    if (user) {
+      // If the user exists, append the contact data to the user's contacts array
+      user.contacts.push(contactData);
+      await user.save();
+    } else {
+      // If the user doesn't exist (or is anonymous), create a new user document
+      user = new schemas.User({
+        auth0Id: auth0Id || null,  // Will be null if anonymous
+        contacts: [contactData],
+      });
+      await user.save();
+    }
+
     res.status(200).json({ message: 'Form submitted successfully' });
   } catch (error) {
     console.error('Error saving contact:', error);
@@ -23,7 +41,7 @@ router.post('/contact', async (req, res) => {
   }
 });
 
-// Send email to owner
+// Send email to owner using SendGrid
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 router.post('/api/contactus', async (req, res) => {
