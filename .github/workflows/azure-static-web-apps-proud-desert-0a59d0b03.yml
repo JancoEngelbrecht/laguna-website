@@ -61,9 +61,14 @@ jobs:
           cd backend
           npm install
 
+      # Azure Login with Service Principal
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }} # Secret containing the service principal credentials
+
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'Lagunabutchery' 
-          publish-profile: ${{ secrets.AZURE_APP_SERVICE_PUBLISH_PROFILE }}
           package: ./backend
