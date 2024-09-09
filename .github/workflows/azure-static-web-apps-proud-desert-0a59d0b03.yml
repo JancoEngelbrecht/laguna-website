@@ -61,6 +61,17 @@ jobs:
           cd backend
           npm install
 
+      - name: Build backend
+        run: |
+          cd backend
+          npm run build
+
+      # Add a step to create a ZIP package of the backend
+      - name: Package backend for deployment
+        run: |
+          cd backend
+          zip -r ../backend.zip . 
+
       # Azure Login with Service Principal
       - name: Azure Login
         uses: azure/login@v1
@@ -70,5 +81,5 @@ jobs:
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'Lagunabutchery' 
-          package: ./backend
+          app-name: 'Lagunabutchery'
+          package: ./backend.zip # Use the zip file created earlier
