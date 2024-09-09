@@ -44,42 +44,36 @@ jobs:
           REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
 
   # Backend job (deploy only if changes are in the backend directory)
-  deploy_backend:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
-    runs-on: ubuntu-latest
-    name: Deploy Backend
-    steps:
-      - uses: actions/checkout@v3
+deploy_backend:
+  if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+  runs-on: ubuntu-latest
+  name: Deploy Backend
+  steps:
+    - uses: actions/checkout@v3
 
-      - name: Set up Node.js version for backend
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20.x'
+    - name: Set up Node.js version for backend
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20.x'
 
-      - name: Install backend dependencies
-        run: |
-          cd backend
-          npm install
+    - name: Install backend dependencies
+      run: |
+        cd backend
+        npm install
 
-      - name: Build backend
-        run: |
-          cd backend
-          npm run build
+    - name: Build backend
+      run: |
+        cd backend
+        npm run build
 
-      # Add a step to create a ZIP package of the backend
-      - name: Package backend for deployment
-        run: |
-          cd backend
-          zip -r ../backend.zip . 
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # Azure Login with Service Principal
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }} # Secret containing the service principal credentials
-
-      - name: Deploy to Azure App Service
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'Lagunabutchery'
-          package: ./backend.zip # Use the zip file created earlier
+    # Deploy the backend folder directly without zipping
+    - name: Deploy to Azure App Service
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'Lagunabutchery'
+        package: './backend'  # Directly deploy the backend folder
