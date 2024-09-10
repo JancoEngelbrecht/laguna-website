@@ -43,38 +43,42 @@ jobs:
           REACT_APP_AUTH_DOMAIN: ${{ secrets.REACT_APP_AUTH_DOMAIN }}
           REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
 
-  # Backend job (build and deploy only if changes are in the backend directory)
-  build_and_deploy_backend:
-    if: contains(github.event.head_commit.message, 'backend')
-    runs-on: ubuntu-latest
-    name: Build and Deploy Backend
-    steps:
-      - uses: actions/checkout@v4
+    build_and_deploy_backend:
+      if: contains(github.event.head_commit.message, 'backend')
+      runs-on: ubuntu-latest
+      name: Build and Deploy Backend
+      steps:
+        - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          cache: 'npm'
-          cache-dependency-path: 'backend/package-lock.json'  # Point to the lock file in the backend folder
+        - name: Set up Node.js
+          uses: actions/setup-node@v4
+          with:
+            node-version: '20.x'
+            cache: 'npm'
+            cache-dependency-path: 'backend/package-lock.json'
 
-      - name: Install backend dependencies
-        run: |
-          cd backend
-          npm install
+        - name: Install backend dependencies
+          run: |
+            cd backend
+            npm install
 
-      - name: Build backend
-        run: |
-          cd backend
-          npm run build --if-present
+        - name: Build backend
+          run: |
+            cd backend
+            npm run build --if-present
 
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+        - name: Zip Backend Directory
+          run: |
+            cd backend
+            zip -r ../backend.zip .
 
-      - name: Deploy to Azure WebApp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'Lagunabutchery'
-          package: .  # Path to the backend folder where the code exists
+        - name: Azure Login
+          uses: azure/login@v1
+          with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+        - name: Deploy to Azure WebApp
+          uses: azure/webapps-deploy@v2
+          with:
+            app-name: 'Lagunabutchery'
+            package: backend.zip
