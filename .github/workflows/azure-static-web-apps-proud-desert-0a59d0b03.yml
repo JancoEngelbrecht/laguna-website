@@ -77,4 +77,4 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'Lagunabutchery'
-          package: backend  # Path to the backend folder where the code exists
+          package: .  # Path to the backend folder where the code exists
