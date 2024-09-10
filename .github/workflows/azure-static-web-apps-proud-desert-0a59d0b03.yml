@@ -5,64 +5,91 @@ on:
     branches:
       - main
     paths:
+      - 'frontend/**'  # Trigger only when files in the frontend directory are changed
+      - 'backend/**'   # Trigger only when files in the backend directory are changed
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+    paths:
       - 'frontend/**'
-      - 'backend/**'  # Trigger deployment for changes in the backend directory
-
-env:
-  AZURE_WEBAPP_NAME: Lagunabutchery   # Set this to your Azure App Service name
-  AZURE_WEBAPP_PACKAGE_PATH: '.'      # Path to the backend project (relative to the root)
-  NODE_VERSION: '20.x'                # Set this to the Node.js version to use
+      - 'backend/**'
+  workflow_dispatch:
 
 jobs:
-  build:
+  # Frontend job (build and deploy only if changes are in the frontend directory)
+  build_and_deploy_frontend:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
-    name: Build Backend
+    name: Build and Deploy Frontend
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          lfs: false
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
+      - name: Build and Deploy Frontend
+        id: builddeployfrontend
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PROUD_DESERT_0A59D0B03 }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}  # Used for GitHub integrations (i.e., PR comments)
+          action: "upload"
+          app_location: "./frontend"  # App source code path
+          api_location: ""  # API source code path - optional
+          output_location: "build"  # Built app content directory - optional
+        env:
+          REACT_APP_AUTH_CLIENT_ID: ${{ secrets.REACT_APP_AUTH_CLIENT_ID }}
+          REACT_APP_AUTH_DOMAIN: ${{ secrets.REACT_APP_AUTH_DOMAIN }}
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
 
-    - name: Install dependencies
-      run: |
-        cd backend
-        npm install
-
-    - name: Build backend
-      run: |
-        cd backend
-        npm run build --if-present
-
-    - name: Upload artifact for deployment job
-      uses: actions/upload-artifact@v4
-      with:
-        name: backend-app
-        path: backend  # Path to the backend directory
-
-  deploy:
+  # Backend job (build and deploy only if changes are in the backend directory)
+  build_and_deploy_backend:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
+    name: Build and Deploy Backend
     steps:
-    - name: Download artifact from build job
-      uses: actions/download-artifact@v4
-      with:
-        name: backend-app
+      - uses: actions/checkout@v4
 
-    - name: Azure Login
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+          cache-dependency-path: 'backend/package-lock.json'  # Point to the lock file in the backend folder
 
-    - name: Deploy to Azure WebApp
-      id: deploy-to-webapp
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        package: './backend'  # Path to the backend directory
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          npm install
+
+      - name: Build backend
+        run: |
+          cd backend
+          npm run build --if-present
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-app
+          path: backend  # Ensure this path is correct
+
+  deploy_backend:
+    runs-on: ubuntu-latest
+    needs: build_and_deploy_backend
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: backend-app
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy to Azure WebApp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'Lagunabutchery'
+          package: backend  # Path to the backend folder where the code exists
