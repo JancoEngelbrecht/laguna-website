@@ -57,7 +57,9 @@ jobs:
               node-version: '20.x'
 
         - name: Install Dependencies
-          run: npm install
+          run: |
+            cd backend  
+            npm install
 
         - name: Deploy to Azure App Service
           uses: azure/webapps-deploy@v2
