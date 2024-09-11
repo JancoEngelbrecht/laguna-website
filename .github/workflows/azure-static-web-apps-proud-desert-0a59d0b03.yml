@@ -54,7 +54,9 @@ jobs:
         - name: Setup Node.js version
           uses: actions/setup-node@v4
           with:
-              node-version: '12.x'
+              node-version: '16.x'
+              always-auth: false
+              check-latest: false
 
         - name: Install Dependencies
           run: |
