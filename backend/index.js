@@ -30,7 +30,6 @@ const routes = require('./routes');
 app.use('/', routes);
 
 // Connect to MongoDB (CosmosDB)
-console.log(process.env.DB_URI)
 mongoose.connect(process.env.DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
