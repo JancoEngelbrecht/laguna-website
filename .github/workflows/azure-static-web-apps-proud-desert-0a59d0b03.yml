@@ -88,3 +88,7 @@ jobs:
           slot-name: 'Production'
           package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D138B90A0ED54115975467244D32F7EC }}
+
+    env:
+        SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+        DB_URI: ${{ secrets.DB_URI }}
