@@ -5,7 +5,7 @@ const router = express.Router();
 require('dotenv').config();
 
 // Import the User model
-const { User } = require('../models/schemas');  // Adjust the path to your schemas file
+const { User } = require('../models/mongodbschemas');  // Adjust the path to your schemas file
 
 // Initialize SendGrid client
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
