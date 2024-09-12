@@ -1,5 +1,5 @@
 const express = require('express');
-const schemas = require('../models/schemas');
+const schemas = require('../models/mongodbschemas');
 
 const router = express.Router();
 

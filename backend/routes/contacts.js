@@ -1,5 +1,5 @@
 const express = require('express');
-const schemas = require('../models/schemas');
+const schemas = require('../models/mongodbschemas');
 const sgMail = require('@sendgrid/mail');
 
 const router = express.Router();
