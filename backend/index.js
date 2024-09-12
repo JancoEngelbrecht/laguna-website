@@ -33,8 +33,6 @@ app.use('/', routes);
 mongoose.connect(process.env.DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,       // If you need to create indexes automatically
-    useFindAndModify: false,    // If you are using findOneAndUpdate or findOneAndDelete
     ssl: true,                  // Ensure SSL is true for Cosmos DB
     retryWrites: false          // Disable retryWrites for Cosmos DB
 })
