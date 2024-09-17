@@ -43,5 +43,22 @@ mongoose.connect(process.env.DB_URI, {
 const port = process.env.PORT || 4000; // Set the port from environment variables or default to 4000
 const server = app.listen(port, () => {
     console.log(`Server is running on ${port}`);
+    pingServer();
 }); 
 
+// Function to ping the server
+function pingServer() {
+    // Use the same URL as the CORS origin (your deployed Azure app URL)
+    const serverUrl = 'https://proud-desert-0a59d0b03.5.azurestaticapps.net'; 
+
+    // Ping the server every 25 minutes (1500000 milliseconds)
+    setInterval(() => {
+        axios.get(serverUrl)
+            .then(response => {
+                console.log('Pinged server successfully to prevent sleeping:', response.status);
+            })
+            .catch(error => {
+                console.log('Error pinging server:', error.message);
+            });
+    }, 1500000); // 25 minutes in milliseconds
+}
