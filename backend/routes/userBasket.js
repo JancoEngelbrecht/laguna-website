@@ -93,13 +93,13 @@ router.get('/users/basketProducts/:productId', async (req, res) => {
   try {
     const { productId } = req.params;
     const users = await schemas.User.find(
-      { 'basket.identity': productId }, // Look into the 'basket' field now
-      'auth0Id basket'
+      { 'products.identity': productId }, // Look into the 'basket' field now
+      'auth0Id products'
     ).lean();
 
     // Filter the basket items to only include those with the specific productId
     const result = users.map(user => {
-      const filteredBasket = user.basket.filter(product => product.identity === productId);
+      const filteredBasket = user.products.filter(product => product.identity === productId);
       return {
         auth0Id: user.auth0Id,
         basket: filteredBasket

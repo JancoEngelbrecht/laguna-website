@@ -14,6 +14,7 @@ const ProductEditList = ({ products, loading, error, onDelete }) => {
       // Fetch all users who have the product in their baskets
       const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/basketProducts/${updatedProduct._id}`);
       const users = response.data;
+      console.log(users)
 
       // Update the product in all user baskets
       for (const user of users) {
@@ -43,6 +44,7 @@ const ProductEditList = ({ products, loading, error, onDelete }) => {
       // Fetch all users who have the product in their baskets
       const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/basketProducts/${productId}`);
       const users = response.data;
+      
 
      // Remove the product from all user baskets
     for (const user of users) {

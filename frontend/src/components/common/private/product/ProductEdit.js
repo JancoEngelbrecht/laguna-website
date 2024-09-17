@@ -46,10 +46,12 @@ const ProductEdit = ({ product, onUpdate, onDelete }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onUpdate(localProduct); // Pass updated product data to parent
+    console.log("Print Local Product in ProductEdit.js ",localProduct)
   };
 
   const handleDelete = () => {
     onDelete(localProduct._id); // Pass product ID to parent for deletion
+    console.log("Print Local Product Id in ProductEdit.js ",localProduct._id)
   };
 
   return (
