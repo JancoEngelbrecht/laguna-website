@@ -117,7 +117,7 @@ router.get('/users/basketProducts/:productId', async (req, res) => {
 router.put('/user/:auth0Id/products/:productId', async (req, res) => {
   try {
     const { auth0Id, productId } = req.params;
-    const { name, descript, price, quantity } = req.body;
+    const { name, descript, image, price, quantity } = req.body;
 
     const user = await schemas.User.findOne({ auth0Id });
 
@@ -135,6 +135,7 @@ router.put('/user/:auth0Id/products/:productId', async (req, res) => {
     product.descript = descript || product.descript;
     product.price = price !== undefined ? mongoose.Types.Decimal128.fromString(price.toString()) : product.price;
     product.quantity = quantity || product.quantity;
+    product.image = image || product.image;
 
     await user.save();
 
