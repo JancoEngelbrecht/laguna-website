@@ -102,7 +102,7 @@ router.get('/users/basketProducts/:productId', async (req, res) => {
       const filteredBasket = user.products.filter(product => product.identity === productId);
       return {
         auth0Id: user.auth0Id,
-        basket: filteredBasket
+        products: filteredBasket
       };
     });
 
