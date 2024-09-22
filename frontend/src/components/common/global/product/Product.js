@@ -33,7 +33,7 @@ function Product({ product, addToBasket }) {
         {isAuthenticated ? (
           <AddToBasketBtn onAddClick={handleAdd} />
         ) : (
-          <p className="text-red-600">Login and submit your order.</p>
+          <p className="text-red-600"></p>
         )}
       </div>
     </div>

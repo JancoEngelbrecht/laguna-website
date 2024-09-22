@@ -38,7 +38,7 @@ function Products({ userId }) {
       <h1 className="text-3xl font-semibold mb-4">Laguna's Meat Products</h1>
       {/* Render an error message if there's an error */}
       {error ? (
-        <div className="text-red-500"></div>
+        <div className="text-red-500">Failed to load products. Please try again later.</div>
       ) : (
         // Render the ProductList component with fetched products and loading state
         <ProductList products={products} loading={loading} userId={userId} />
