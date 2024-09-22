@@ -3,6 +3,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 require('dotenv/config'); 
+const axios = require('axios');
+
 
 const app = express();
 
@@ -48,7 +50,7 @@ const server = app.listen(port, () => {
 
 // Function to ping the server
 function pingServer() {
-    // Use the same URL as the CORS origin (your deployed Azure app URL)
+    
     const serverUrl = 'https://proud-desert-0a59d0b03.5.azurestaticapps.net'; 
 
     // Ping the server every 25 minutes (1500000 milliseconds)
