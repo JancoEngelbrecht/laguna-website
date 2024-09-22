@@ -6,7 +6,13 @@ const Privacy = () => {
       <div>
       <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
       <p className="text-sm mb-8">Last Updated: 19 September 2024</p>
-      <p>Welcome to Laguna Butchery. We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about this privacy policy or our practices with regards to your personal information, please contact us at [Your Contact Information]. When you visit our website and use our services, you trust us with your personal information. We take your privacy very seriously. In this privacy policy, we describe our privacy practices. We seek to explain to you in the clearest way possible what information we collect, how we use it, and what rights you have in relation to it. We hope you take some time to read through it carefully, as it is important. If there are any terms in this privacy policy that you do not agree with, please discontinue use of our Sites and our services.</p>
+      <p>Welcome to Laguna Butchery. We are committed to protecting your personal information and your right to privacy. 
+        If you have any questions or concerns about this privacy policy or our practices with regards to your personal information, 
+        please contact us. When you visit our website and use our services, you trust us with your personal information.
+         We take your privacy very seriously. In this privacy policy, we describe our privacy practices. 
+         We seek to explain to you in the clearest way possible what information we collect, how we use it, 
+         and what rights you have in relation to it. We hope you take some time to read through it carefully, as it is important. 
+         If there are any terms in this privacy policy that you do not agree with, please discontinue use of our Sites and our services.</p>
         </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
