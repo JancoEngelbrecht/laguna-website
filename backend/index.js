@@ -53,7 +53,6 @@ function pingServer() {
     
     const serverUrl = 'https://proud-desert-0a59d0b03.5.azurestaticapps.net'; 
 
-    // Ping the server every 25 minutes (1500000 milliseconds)
     setInterval(() => {
         axios.get(serverUrl)
             .then(response => {
@@ -62,5 +61,5 @@ function pingServer() {
             .catch(error => {
                 console.log('Error pinging server:', error.message);
             });
-    }, 1500000); // 25 minutes in milliseconds
+    }, 600000); // 10 minutes in milliseconds
 }
