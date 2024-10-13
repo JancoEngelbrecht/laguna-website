@@ -18,7 +18,7 @@ const PrivacyConsentBanner = () => {
 
   return (
     isVisible && (
-      <div className="fixed bottom-0 w-full bg-black bg-opacity-50 text-white p-4 flex justify-between items-center z-80">
+      <div className="fixed bottom-0 w-full bg-black bg-opacity-50 text-white p-4 flex justify-between items-center z-40">
         <div className="text-sm">
           By signing up, you consent to the collection and processing of your email and phone number for account creation and management, as well as for website analytics and improvements. Your data will not be sold to external providers, and you can at any time request the termination of data. <a href="/privacy" className="underline">Read our Privacy Policy for more information.</a>
         </div>
